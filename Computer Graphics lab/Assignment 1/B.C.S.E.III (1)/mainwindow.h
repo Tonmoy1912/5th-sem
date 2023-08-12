@@ -43,7 +43,7 @@ private slots:
 
     void on_pushButton_6_clicked();
 
-    void setColor(int x,int y);
+    void setColor(int x,int y,int c);
 
     void on_pushButton_7_clicked();
 

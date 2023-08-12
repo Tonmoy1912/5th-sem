@@ -12,6 +12,7 @@
 using namespace std;
 
 pair<int,int> point1,point2;
+vector<vector<int>> arr(800,vector<int>(800,0));
 
 QImage img=QImage(700,700,QImage::Format_RGB888);
 MainWindow::MainWindow(QWidget *parent) :
@@ -65,6 +66,10 @@ void MainWindow::Mouse_Pressed()
     int val=ui->spinBox->value();
     int xval=(ui->frame->x/val)*val;
     int yval=(ui->frame->y/val)*val;
+    //maintain the seleted point to draw line
+    point1=point2;
+    point2.first=(ui->frame->y/val);
+    point2.second=(ui->frame->x/val);
     for(int i=xval;i<xval+val;i++){
         for(int j=yval;j<yval+val;j++){
             img.setPixel(i,j,qRgb(255,255,0));
@@ -96,15 +101,86 @@ void MainWindow::Mouse_Pressed()
 
 void MainWindow::on_show_axes_clicked()
 {
-    if(ui->show_axes->isChecked())
-    {
-        ui->x_axis->show();
-        ui->y_axis->show();
+    int val=ui->spinBox->value();
+    int low=(350/val)*val;
+    int high=(350/val)*val+val;
+
+//    if(ui->show_axes->isChecked())
+//    {
+//        ui->x_axis->show();
+//        ui->y_axis->show();
+//    }
+//    else{
+//        ui->x_axis->hide();
+//        ui->y_axis->hide();
+//    }
+
+    if(ui->show_axes->isChecked()){
+        for(int i=0;i<img.width();i++)
+        {
+            for(int j=low;j<=high;j++){
+                img.setPixel(i,j,qRgb(0,255,0));
+                img.setPixel(j,i,qRgb(0,255,0));
+                //if(arr[i/val][j/val])
+            }
+
+        }
+        //to recolor the colored point
+//        for(int i=0;i<img.width();i+=val){
+//            if(arr[i][low/val]){
+//                setColor(i,low/val,arr[i][low/val]);
+//            }
+//            if(arr[low/val][i]){
+//                setColor(low/val,i,arr[low/val][i]);
+//            }
+//        }
     }
     else{
-        ui->x_axis->hide();
-        ui->y_axis->hide();
+        for(int i=0;i<img.width();i++)
+        {
+            for(int j=low;j<=high;j++){
+                img.setPixel(i,j,qRgb(0,0,0));
+                img.setPixel(j,i,qRgb(0,0,0));
+
+            }
+
+        }
+        int val=ui->spinBox->value();
+
+        //to recolor the colored point
+//        for(int i=0;i<img.width();i+=val){
+//            if(arr[i][low/val]){
+//                setColor(i,low/val,arr[i][low/val]);
+//            }
+//            if(arr[low/val][i]){
+//                setColor(low,i,arr[low/val][i]);
+//            }
+//        }
+
+        for(int j=0;j<img.height();j+=val)
+        {
+            for(int i=0;i<img.width();i++)
+            {
+                img.setPixel(i,j,qRgb(0,0,255));
+            }
+        }
+        for(int j=0;j<img.height();j+=val)
+        {
+            for(int i=0;i<img.width();i++)
+            {
+                img.setPixel(j,i,qRgb(0,0,255));
+            }
+        }
+
+//        ui->frame->setPixmap(QPixmap::fromImage(img));
     }
+
+
+
+
+    ui->frame->setPixmap(QPixmap::fromImage(img));
+
+
 }
 void MainWindow::on_set_point1_clicked()
 {
@@ -151,6 +227,12 @@ void MainWindow::on_pushButton_clicked()
             img.setPixel(i,j,qRgb(0,0,0));
         }
     }
+    //to clear the map
+    for(int i=0;i<arr.size();i++){
+        for(int j=0;j<arr[0].size();j++){
+            arr[i][j]=0;
+        }
+    }
     ui->frame->setPixmap(QPixmap::fromImage(img));
 }
 
@@ -189,7 +271,7 @@ void MainWindow::on_spinBox_textChanged(const QString &arg1)
 
 
 
-
+//create axis
 void MainWindow::on_pushButton_3_clicked()
 {
     for(int i=0;i<img.width();i++)
@@ -201,13 +283,18 @@ void MainWindow::on_pushButton_3_clicked()
     ui->frame->setPixmap(QPixmap::fromImage(img));
 }
 
-void MainWindow::setColor(int x,int y){
+void MainWindow::setColor(int x,int y,int c){
     int val=ui->spinBox->value();
     int xval=x*val;
     int yval=y*val;
     for(int i=xval;i<xval+val;i++){
         for(int j=yval;j<yval+val;j++){
-            img.setPixel(j,i,qRgb(255,255,0));
+            if(c==1){
+                img.setPixel(j,i,qRgb(255,255,0));
+            }
+            else if(c==2){
+                img.setPixel(j,i,qRgb(120,255,50));
+            }
         }
     }
     ui->frame->setPixmap(QPixmap::fromImage(img));
@@ -244,7 +331,9 @@ void MainWindow::on_pushButton_6_clicked()
         int low=min(y1,y2);
         int high=max(y1,y2);
         for(int y=low;y<=high;y++){
-            setColor(x1,y);
+            setColor(x1,y,1);
+            //to track the set point
+            arr[x1][y]=1;
         }
     }
     else if(abs(y1-y2)<=abs(x1-x2)){
@@ -257,7 +346,9 @@ void MainWindow::on_pushButton_6_clicked()
             //float fy = y0 + float(yn-y0)/float(xn-x0)*ix; 		// round to nearest whole integer
             float fy=m*(ix-x1)+y1;
             int iy = (int)(fy+0.5);
-            setColor(ix,iy);
+            setColor(ix,iy,1);
+            //to track the set point
+            arr[ix][iy]=1;
         }
     }
     else{
@@ -267,7 +358,9 @@ void MainWindow::on_pushButton_6_clicked()
         for(int iy=low;iy<=high;iy++){
             float fx=(iy-y1)/m+x1;
             int ix=(int)(fx+0.5);
-            setColor(ix,iy);
+            setColor(ix,iy,1);
+            //to track the set point
+            arr[ix][iy]=1;
         }
     }
 
@@ -283,7 +376,9 @@ void MainWindow::on_pushButton_7_clicked()
         int low=min(y0,yn);
         int high=max(y0,yn);
         for(int y=low;y<=high;y++){
-            setColor(xn,y);
+            setColor(xn,y,2);
+            //to track the set point
+            arr[xn][y]=2;
         }
         return ;
     }
@@ -291,7 +386,9 @@ void MainWindow::on_pushButton_7_clicked()
         int low=min(x0,xn);
         int high=max(x0,xn);
         for(int x=low;x<=high;x++){
-            setColor(x,yn);
+            setColor(x,yn,2);
+            //to track the set point
+            arr[x][yn]=2;
         }
         return ;
     }
@@ -337,7 +434,9 @@ void MainWindow::on_pushButton_7_clicked()
     {
         ix = int(x + 0.5); // round to nearest pixel coordinate
         iy = int(y + 0.5);
-        setColor(ix,iy);
+        setColor(ix,iy,2);
+        //to track the set point
+        arr[ix][iy]=2;
         x += Dx;	// floating point calculations
         y += Dy;
     }

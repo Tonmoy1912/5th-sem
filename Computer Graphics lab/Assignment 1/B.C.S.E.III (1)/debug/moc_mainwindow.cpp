@@ -61,11 +61,12 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "setColor",
     "x",
     "y",
+    "c",
     "on_pushButton_7_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[44];
+    uint offsetsAndSizes[46];
     char stringdata0[11];
     char stringdata1[14];
     char stringdata2[1];
@@ -87,7 +88,8 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata18[9];
     char stringdata19[2];
     char stringdata20[2];
-    char stringdata21[24];
+    char stringdata21[2];
+    char stringdata22[24];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -114,7 +116,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(307, 8),  // "setColor"
         QT_MOC_LITERAL(316, 1),  // "x"
         QT_MOC_LITERAL(318, 1),  // "y"
-        QT_MOC_LITERAL(320, 23)   // "on_pushButton_7_clicked"
+        QT_MOC_LITERAL(320, 1),  // "c"
+        QT_MOC_LITERAL(322, 23)   // "on_pushButton_7_clicked"
     },
     "MainWindow",
     "Mouse_Pressed",
@@ -137,6 +140,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "setColor",
     "x",
     "y",
+    "c",
     "on_pushButton_7_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -170,8 +174,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       15,    0,  118,    2, 0x08,   13 /* Private */,
       16,    0,  119,    2, 0x08,   14 /* Private */,
       17,    0,  120,    2, 0x08,   15 /* Private */,
-      18,    2,  121,    2, 0x08,   16 /* Private */,
-      21,    0,  126,    2, 0x08,   19 /* Private */,
+      18,    3,  121,    2, 0x08,   16 /* Private */,
+      22,    0,  128,    2, 0x08,   20 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -187,7 +191,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   19,   20,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,   19,   20,   21,
     QMetaType::Void,
 
        0        // eod
@@ -234,6 +238,7 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_pushButton_7_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -259,7 +264,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 10: _t->on_pushButton_4_clicked(); break;
         case 11: _t->on_pushButton_5_clicked(); break;
         case 12: _t->on_pushButton_6_clicked(); break;
-        case 13: _t->setColor((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 13: _t->setColor((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 14: _t->on_pushButton_7_clicked(); break;
         default: ;
         }
