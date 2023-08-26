@@ -68,12 +68,26 @@ function App() {
     //bypass crc error
     let err_bypasscrc=ErrorInjection.bypasscrc(codeword_raw_crc,generator);
 
+
+    console.log("code word CRC:");
+    console.log(codeword_raw_crc);
+    console.log("bypass error for CRC:");
+    console.log(err_bypasscrc);
+
+ 
+
     let err_checksum_single=ErrorInjection.injectSingleError(codeword_raw_checksum);
     let err_checksum_isolated_double=ErrorInjection.injectTwoIsolatedError(codeword_raw_checksum);
     let err_checksum_odd=ErrorInjection.injectOddError(codeword_raw_checksum);
     let err_checksum_burst=ErrorInjection.injectBurstError(codeword_raw_checksum,burst_err_len);
     //bypass checksum error
     let err_bypasschecksum=ErrorInjection.bypasschecksum(codeword_raw_checksum,word_len_checksum);
+
+    console.log("code word Chechsum:");
+    console.log(codeword_raw_checksum);
+    console.log("bypass error for Checksum:");
+    console.log(err_bypasschecksum);
+   
 
 
     socket.emit("data_send",{

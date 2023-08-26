@@ -1,0 +1,53 @@
+import java.util.*;
+import java.util.stream.*;
+
+import java.nio.file.*;
+import java.nio.charset.*;
+import static java.util.stream.Collectors.*;
+import java.util.function.*;
+
+
+
+class StreamOperations {
+
+    public static void main(String args[]){
+        //Dish d;
+		List<Dish> menu =Arrays.asList( new Dish("chicken burger", false, 800, Dish.Type.MEAT),
+                           new Dish("veg burger", true, 700, Dish.Type.OTHER),
+                           new Dish("chicken", false, 400, Dish.Type.MEAT),
+                           new Dish("french fries", true, 530, Dish.Type.OTHER),
+                           new Dish("rice", true, 350, Dish.Type.OTHER),
+                           new Dish("seasonal fruit", true, 120, Dish.Type.OTHER),
+                           new Dish("pizza", true, 550, Dish.Type.OTHER),
+                           new Dish("prawns", false, 400, Dish.Type.FISH),
+                           new Dish("salmon", false, 450, Dish.Type.FISH),
+						   new Dish("falafel", true, 450, Dish.Type.OTHER));
+		
+		Stream<Dish> StreamDish=menu.stream().parallel().filter(d->{
+												System.out.println(d.getName());
+												return d.getCalories()>350;});
+		                                       
+		//List<Dish> HighCalorieDish=StreamDish.collect(toList());
+		//System.out.println(HighCalorieDish);
+																
+		//Optional<String> HighCalorieDish1=StreamDish.findAny();
+		/*System.out.println("Total calorie: " + TotalCalorie);
+		
+		IntStream exampleStream=menu.stream().mapToInt(d->d.getCalories()); 
+		Stream<Integer> example=exampleStream.boxed();
+		int calories = menu.stream().mapToInt(Dish::getCalories).sum();
+
+		OptionalInt maxCalories=menu.stream().mapToInt(d->d.getCalories()).max();
+		System.out.println("max calorie " + maxCalories.orElse(0)); */
+
+		
+		menu.stream().filter (d->!d.isVegetarian() && d.getCalories()>400)
+                          .findAny()
+						  //.orElse(new Dish());
+                          .ifPresent(d->System.out.println(d.getName()));
+		
+	
+		
+		
+	}
+}

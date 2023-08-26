@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtGui>
 #include <QtCore>
+//#include<bits/stdc++.h>
 
 namespace Ui {
 class MainWindow;
@@ -46,6 +47,10 @@ private slots:
     void setColor(int x,int y,int c);
 
     void on_pushButton_7_clicked();
+
+    void on_Bresenham_line_clicked();
+
+//    void setPoints(vector<pair<int,int>> &points,int color);
 
 private:
     Ui::MainWindow *ui;

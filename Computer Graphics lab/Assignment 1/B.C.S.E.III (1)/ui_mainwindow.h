@@ -53,6 +53,9 @@ public:
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
     QPushButton *pushButton_7;
+    QPushButton *Bresenham_line;
+    QLabel *label;
+    QLabel *execution_time;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -148,6 +151,16 @@ public:
         pushButton_7 = new QPushButton(centralWidget);
         pushButton_7->setObjectName("pushButton_7");
         pushButton_7->setGeometry(QRect(820, 510, 80, 18));
+        Bresenham_line = new QPushButton(centralWidget);
+        Bresenham_line->setObjectName("Bresenham_line");
+        Bresenham_line->setGeometry(QRect(720, 540, 80, 18));
+        label = new QLabel(centralWidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(720, 570, 71, 20));
+        execution_time = new QLabel(centralWidget);
+        execution_time->setObjectName("execution_time");
+        execution_time->setGeometry(QRect(720, 590, 111, 31));
+        execution_time->setFrameShape(QFrame::Panel);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
@@ -187,6 +200,9 @@ public:
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "Select Point 2", nullptr));
         pushButton_6->setText(QCoreApplication::translate("MainWindow", "Parametric ", nullptr));
         pushButton_7->setText(QCoreApplication::translate("MainWindow", "DDA", nullptr));
+        Bresenham_line->setText(QCoreApplication::translate("MainWindow", "Bresenham", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Execution TIme", nullptr));
+        execution_time->setText(QString());
     } // retranslateUi
 
 };
