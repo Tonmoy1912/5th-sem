@@ -8,10 +8,12 @@
 #include <QPaintDevice>
 #include <QPoint>
 #include <bits/stdc++.h>
+#include <unistd.h>
 
 using namespace std;
 
-pair<int,int> point1,point2;
+pair<int,int> point1={0,0},point2={0,0};
+int s_time=0.5;
 //vector<vector<int>> arr(800,vector<int>(800,0));
 
 set<pair<pair<int,int>,int>> s;
@@ -201,41 +203,41 @@ void MainWindow::on_show_axes_clicked()
 
 
 }
-void MainWindow::on_set_point1_clicked()
-{
-    if(ui->draw_line->isChecked()){
-        p1.setX(ui->frame->x);
-        p1.setY(ui->frame->y);
-    }
-}
+//void MainWindow::on_set_point1_clicked()
+//{
+//    if(ui->draw_line->isChecked()){
+//        p1.setX(ui->frame->x);
+//        p1.setY(ui->frame->y);
+//    }
+//}
 
-void MainWindow::on_set_point2_clicked()
-{
-    if(ui->draw_line->isChecked()){
-        p2.setX(ui->frame->x);
-        p2.setY(ui->frame->y);
-    }
-}
+//void MainWindow::on_set_point2_clicked()
+//{
+//    if(ui->draw_line->isChecked()){
+//        p2.setX(ui->frame->x);
+//        p2.setY(ui->frame->y);
+//    }
+//}
 
-void MainWindow::on_Draw_clicked()
-{
-    int r0=ui->circle_radius->value();
-    QPainter painter(&img);
-    QPen pen;
-    pen.setWidth(1);
-    pen.setColor(Qt::red);
-    if(ui->draw_circle->isChecked()){
-        p1.setX(ui->frame->x);
-        p1.setY(ui->frame->y);
-        painter.setPen(pen);
-        painter.drawEllipse(p1,r0,r0);
-    }
-    if(ui->draw_line->isChecked()){
-        painter.setPen(Qt::red);
-        painter.drawLine(p1,p2);
-    }
-    ui->frame->setPixmap(QPixmap::fromImage(img));
-}
+//void MainWindow::on_Draw_clicked()
+//{
+//    int r0=ui->circle_radius->value();
+//    QPainter painter(&img);
+//    QPen pen;
+//    pen.setWidth(1);
+//    pen.setColor(Qt::red);
+//    if(ui->draw_circle->isChecked()){
+//        p1.setX(ui->frame->x);
+//        p1.setY(ui->frame->y);
+//        painter.setPen(pen);
+//        painter.drawEllipse(p1,r0,r0);
+//    }
+//    if(ui->draw_line->isChecked()){
+//        painter.setPen(Qt::red);
+//        painter.drawLine(p1,p2);
+//    }
+//    ui->frame->setPixmap(QPixmap::fromImage(img));
+//}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -343,30 +345,45 @@ void MainWindow::setColor(int x,int y,int c){
             else if(c==3){
                 img.setPixel(j,i,qRgb(0,0,255));
             }
+            else if(c==4){
+                img.setPixel(j,i,qRgb(255,140,255));
+            }
+            else if(c==5){
+                img.setPixel(j,i,qRgb(255,0,140));
+            }
+            else if(c==6){
+                img.setPixel(j,i,qRgb(255,0,0));
+            }
+            else if(c==7){
+                img.setPixel(j,i,qRgb(255,150,0));
+            }
+            else if(c==8){
+                img.setPixel(j,i,qRgb(100,50,255));
+            }
         }
     }
     ui->frame->setPixmap(QPixmap::fromImage(img));
 
 }
 
-void MainWindow::on_pushButton_4_clicked()
-{
-    int val=ui->spinBox->value();
-    if(ui->radioButton->isChecked()){
-        point1.first=(ui->frame->y/val);
-        point1.second=(ui->frame->x/val);
-    }
-}
+//void MainWindow::on_pushButton_4_clicked()
+//{
+//    int val=ui->spinBox->value();
+//    if(ui->radioButton->isChecked()){
+//        point1.first=(ui->frame->y/val);
+//        point1.second=(ui->frame->x/val);
+//    }
+//}
 
 
-void MainWindow::on_pushButton_5_clicked()
-{
-    int val=ui->spinBox->value();
-    if(ui->radioButton->isChecked()){
-        point2.first=(ui->frame->y/val);
-        point2.second=(ui->frame->x/val);
-    }
-}
+//void MainWindow::on_pushButton_5_clicked()
+//{
+//    int val=ui->spinBox->value();
+//    if(ui->radioButton->isChecked()){
+//        point2.first=(ui->frame->y/val);
+//        point2.second=(ui->frame->x/val);
+//    }
+//}
 
 
 //void MainWindow::setPoints(vector<pair<int,int>> &points,int color){
@@ -690,6 +707,7 @@ void MainWindow::on_Bresenham_line_clicked()
     //    setPoints(points,2);
     for(auto it:points){
         setColor(it.first,it.second,3);
+        sleep(s_time);
 //        s.insert({{it.first,it.second},3});
     }
 
@@ -706,6 +724,345 @@ void MainWindow::on_Bresenham_line_clicked()
     for(auto it:points){
         //        setColor(it.first,it.second,1);
         s.insert({{it.first-originX,it.second-originY},3});
+    }
+}
+
+
+void MainWindow::on_cir_polar_clicked()
+{
+    int centerX=point2.first;
+    int centerY=point2.second;
+    int r=ui->Radius->value();
+
+    double inc=((double)1/(r));
+    double low=3.14/4;
+    double high=3.14/2;
+
+
+    clock_t start,end;
+    start=clock();
+
+    int r2=r*r;
+
+    vector<pair<int,int>> points;
+    points.push_back({centerX+0,centerY+r});
+    points.push_back({centerX+0,centerY-r});
+    points.push_back({centerX+r,centerY+0});
+    points.push_back({centerX-r,centerY+0});
+
+
+    for(double it=low;it<=high;it+=inc){
+//        int y=sqrt(r2-i*i)+0.5;
+
+        int x=r*cos(it)+0.5;
+        int y=r*sin(it)+0.5;
+        int i=x;
+
+        if(i>y){
+            break;
+        }
+        points.push_back({centerX+i,centerY+y});
+        points.push_back({centerX+i,centerY-y});
+        points.push_back({centerX-i,centerY+y});
+        points.push_back({centerX-i,centerY-y});
+        points.push_back({centerX+y,centerY+i});
+        points.push_back({centerX+y,centerY-i});
+        points.push_back({centerX-y,centerY+i});
+        points.push_back({centerX-y,centerY-i});
+    }
+
+    //color the pixels
+    for(auto it:points){
+        setColor(it.first,it.second,4);
+        sleep(s_time);
+    }
+
+    end=clock();
+
+    double time_taken=double(end-start);
+    ui->exe_time_cir_polar->setText(QString::number(time_taken)+" ms");
+
+    int val=ui->spinBox->value();
+    int originX=350/val;
+    int originY=350/val;
+
+
+    for(auto it:points){
+        //        setColor(it.first,it.second,1);
+        s.insert({{it.first-originX,it.second-originY},4});
+    }
+}
+
+
+void MainWindow::on_cir_midpoint_clicked()
+{
+    int centerX=point2.first;
+    int centerY=point2.second;
+    int r=ui->Radius->value();
+    int r2=r*r;
+    vector<pair<int,int>> points;
+
+    clock_t start,end;
+    start=clock();
+
+    int p=1-r;
+    int x=0,y=r;
+
+    points.push_back({centerX+0,centerY+r});
+    points.push_back({centerX+0,centerY-r});
+    points.push_back({centerX+r,centerY+0});
+    points.push_back({centerX-r,centerY+0});
+
+    while(x<=y){
+        if(p<0){
+            p=p+2*(x+1)+1;
+            x=x+1;
+            y=y;
+        }
+        else{
+            p=p+2*(x+1)+1-2*(y-1);
+            x=x+1;
+            y=y-1;
+        }
+        int i=x;
+        if(x>y){
+            break;
+        }
+        points.push_back({centerX+i,centerY+y});
+        points.push_back({centerX+i,centerY-y});
+        points.push_back({centerX-i,centerY+y});
+        points.push_back({centerX-i,centerY-y});
+        points.push_back({centerX+y,centerY+i});
+        points.push_back({centerX+y,centerY-i});
+        points.push_back({centerX-y,centerY+i});
+        points.push_back({centerX-y,centerY-i});
+    }
+
+    //color the pixels
+    for(auto it:points){
+        setColor(it.first,it.second,5);
+        sleep(s_time);
+    }
+
+    end=clock();
+
+    double time_taken=double(end-start);
+    ui->exe_time_cir_midpoint->setText(QString::number(time_taken)+" ms");
+
+
+    int val=ui->spinBox->value();
+    int originX=350/val;
+    int originY=350/val;
+
+
+    for(auto it:points){
+        //        setColor(it.first,it.second,1);
+        s.insert({{it.first-originX,it.second-originY},5});
+    }
+}
+
+
+//ellipse drawing using Bresenham Midpoint algo
+void MainWindow::on_pushButton_4_clicked()
+{
+    int centerX=point2.first;
+    int centerY=point2.second;
+    int b=ui->r1->value();
+    int a=ui->r2->value();
+    vector<pair<int,int>> points;
+
+    clock_t start,end;
+    start=clock();
+
+    points.push_back({centerX+0,centerY+b});
+    points.push_back({centerX+0,centerY-b});
+    points.push_back({centerX+a,centerY+0});
+    points.push_back({centerX-a,centerY+0});
+
+    int x=0,y=b;
+    int b2=b*b;
+    int a2=a*a;
+    double d1=b2-a2*b+0.25*a2;
+
+    while(a2*(y-0.5)>b2*(x+1)){
+        if(d1<0){
+            x++;
+            d1+=2*b2*x+b2;
+        }
+        else{
+            x++;
+            y--;
+            d1+=2*b2*x+b2-2*a2*y;
+        }
+        points.push_back({centerX+x,centerY+y});
+        points.push_back({centerX+x,centerY-y});
+        points.push_back({centerX-x,centerY+y});
+        points.push_back({centerX-x,centerY-y});
+    }
+
+    double d2=b2*pow(x+0.5,2)+a2*pow(y-1,2)-a2*b2;
+
+    while(y>0){
+        if(d2<0){
+            y--;
+            x++;
+            d2+=a2*(1-2*y)+2*x*b2;
+        }
+        else{
+            y--;
+            d2+=a2*(1-2*y);
+        }
+        points.push_back({centerX+x,centerY+y});
+        points.push_back({centerX+x,centerY-y});
+        points.push_back({centerX-x,centerY+y});
+        points.push_back({centerX-x,centerY-y});
+    }
+
+    //color the pixels
+    for(auto it:points){
+        setColor(it.first,it.second,6);
+        sleep(s_time);
+    }
+
+    end=clock();
+
+    double time_taken=double(end-start);
+    ui->exe_time_ell_midpoint->setText(QString::number(time_taken)+" ms");
+
+
+    int val=ui->spinBox->value();
+    int originX=350/val;
+    int originY=350/val;
+
+
+    for(auto it:points){
+        //        setColor(it.first,it.second,1);
+        s.insert({{it.first-originX,it.second-originY},6});
+    }
+}
+
+
+void MainWindow::on_ell_polar_clicked()
+{
+    int centerX=point2.first;
+    int centerY=point2.second;
+    int b=ui->r1->value();
+    int a=ui->r2->value();
+    vector<pair<int,int>> points;
+
+    clock_t start,end;
+    start=clock();
+
+    points.push_back({centerX+0,centerY+b});
+    points.push_back({centerX+0,centerY-b});
+    points.push_back({centerX+a,centerY+0});
+    points.push_back({centerX-a,centerY+0});
+
+//    int x=0,y=b;
+//    int b2=b*b;
+//    int a2=a*a;
+
+
+    double inc=((double)1)/max(a,b);
+    double low=0;
+    double high=3.14/2;
+    for(double it=low;it<=high;it+=inc){
+        int x=a*cos(it)+0.5;
+        int y=b*sin(it)+0.5;
+        points.push_back({centerX+x,centerY+y});
+        points.push_back({centerX+x,centerY-y});
+        points.push_back({centerX-x,centerY+y});
+        points.push_back({centerX-x,centerY-y});
+    }
+
+
+
+    //color the pixels
+    for(auto it:points){
+        setColor(it.first,it.second,7);
+        sleep(s_time);
+    }
+
+    end=clock();
+
+    double time_taken=double(end-start);
+    ui->exe_time_ell_polar->setText(QString::number(time_taken)+" ms");
+
+
+    int val=ui->spinBox->value();
+    int originX=350/val;
+    int originY=350/val;
+
+
+    for(auto it:points){
+        //        setColor(it.first,it.second,1);
+        s.insert({{it.first-originX,it.second-originY},7});
+    }
+}
+
+
+void MainWindow::on_cir_cartesian_clicked()
+{
+    int centerX=point2.first;
+    int centerY=point2.second;
+    int r=ui->Radius->value();
+
+//    double inc=((double)1/(r));
+    double low=0;
+    double high=r;
+
+
+    clock_t start,end;
+    start=clock();
+
+    int r2=r*r;
+
+    vector<pair<int,int>> points;
+    points.push_back({centerX+0,centerY+r});
+    points.push_back({centerX+0,centerY-r});
+    points.push_back({centerX+r,centerY+0});
+    points.push_back({centerX-r,centerY+0});
+
+
+    for(int it=low;it<=high;it++){
+                int y=sqrt(r2-it*it)+0.5;
+
+//        int x=r*cos(it)+0.5;
+//        int y=r*sin(it)+0.5;
+        int i=it;
+
+        if(i>y){
+            break;
+        }
+        points.push_back({centerX+i,centerY+y});
+        points.push_back({centerX+i,centerY-y});
+        points.push_back({centerX-i,centerY+y});
+        points.push_back({centerX-i,centerY-y});
+        points.push_back({centerX+y,centerY+i});
+        points.push_back({centerX+y,centerY-i});
+        points.push_back({centerX-y,centerY+i});
+        points.push_back({centerX-y,centerY-i});
+    }
+
+    //color the pixels
+    for(auto it:points){
+        setColor(it.first,it.second,8);
+        sleep(s_time);
+    }
+
+    end=clock();
+
+    double time_taken=double(end-start);
+    ui->exe_time_cir_cartesian->setText(QString::number(time_taken)+" ms");
+
+    int val=ui->spinBox->value();
+    int originX=350/val;
+    int originY=350/val;
+
+
+    for(auto it:points){
+        //        setColor(it.first,it.second,1);
+        s.insert({{it.first-originX,it.second-originY},8});
     }
 }
 

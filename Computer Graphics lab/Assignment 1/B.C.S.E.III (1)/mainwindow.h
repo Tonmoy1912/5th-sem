@@ -23,11 +23,11 @@ public:
 private slots:
     void on_show_axes_clicked();
 
-    void on_Draw_clicked();
+//    void on_Draw_clicked();
 
-    void on_set_point1_clicked();
+//    void on_set_point1_clicked();
 
-    void on_set_point2_clicked();
+//    void on_set_point2_clicked();
 
     void on_pushButton_clicked();
 
@@ -38,9 +38,9 @@ private slots:
 
     void on_pushButton_3_clicked();
 
-    void on_pushButton_4_clicked();
+//    void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
+//    void on_pushButton_5_clicked();
 
     void on_pushButton_6_clicked();
 
@@ -51,6 +51,16 @@ private slots:
     void on_Bresenham_line_clicked();
 
 //    void setPoints(vector<pair<int,int>> &points,int color);
+
+    void on_cir_polar_clicked();
+
+    void on_cir_midpoint_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_ell_polar_clicked();
+
+    void on_cir_cartesian_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -47,23 +47,23 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "QPoint&",
     "pos",
     "on_show_axes_clicked",
-    "on_Draw_clicked",
-    "on_set_point1_clicked",
-    "on_set_point2_clicked",
     "on_pushButton_clicked",
     "on_pushButton_2_clicked",
     "on_spinBox_textChanged",
     "arg1",
     "on_pushButton_3_clicked",
-    "on_pushButton_4_clicked",
-    "on_pushButton_5_clicked",
     "on_pushButton_6_clicked",
     "setColor",
     "x",
     "y",
     "c",
     "on_pushButton_7_clicked",
-    "on_Bresenham_line_clicked"
+    "on_Bresenham_line_clicked",
+    "on_cir_polar_clicked",
+    "on_cir_midpoint_clicked",
+    "on_pushButton_4_clicked",
+    "on_ell_polar_clicked",
+    "on_cir_cartesian_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
@@ -75,23 +75,23 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata4[8];
     char stringdata5[4];
     char stringdata6[21];
-    char stringdata7[16];
-    char stringdata8[22];
-    char stringdata9[22];
-    char stringdata10[22];
+    char stringdata7[22];
+    char stringdata8[24];
+    char stringdata9[23];
+    char stringdata10[5];
     char stringdata11[24];
-    char stringdata12[23];
-    char stringdata13[5];
-    char stringdata14[24];
-    char stringdata15[24];
-    char stringdata16[24];
+    char stringdata12[24];
+    char stringdata13[9];
+    char stringdata14[2];
+    char stringdata15[2];
+    char stringdata16[2];
     char stringdata17[24];
-    char stringdata18[9];
-    char stringdata19[2];
-    char stringdata20[2];
-    char stringdata21[2];
-    char stringdata22[24];
-    char stringdata23[26];
+    char stringdata18[26];
+    char stringdata19[21];
+    char stringdata20[24];
+    char stringdata21[24];
+    char stringdata22[21];
+    char stringdata23[25];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -104,23 +104,23 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(44, 7),  // "QPoint&"
         QT_MOC_LITERAL(52, 3),  // "pos"
         QT_MOC_LITERAL(56, 20),  // "on_show_axes_clicked"
-        QT_MOC_LITERAL(77, 15),  // "on_Draw_clicked"
-        QT_MOC_LITERAL(93, 21),  // "on_set_point1_clicked"
-        QT_MOC_LITERAL(115, 21),  // "on_set_point2_clicked"
-        QT_MOC_LITERAL(137, 21),  // "on_pushButton_clicked"
-        QT_MOC_LITERAL(159, 23),  // "on_pushButton_2_clicked"
-        QT_MOC_LITERAL(183, 22),  // "on_spinBox_textChanged"
-        QT_MOC_LITERAL(206, 4),  // "arg1"
-        QT_MOC_LITERAL(211, 23),  // "on_pushButton_3_clicked"
-        QT_MOC_LITERAL(235, 23),  // "on_pushButton_4_clicked"
-        QT_MOC_LITERAL(259, 23),  // "on_pushButton_5_clicked"
-        QT_MOC_LITERAL(283, 23),  // "on_pushButton_6_clicked"
-        QT_MOC_LITERAL(307, 8),  // "setColor"
-        QT_MOC_LITERAL(316, 1),  // "x"
-        QT_MOC_LITERAL(318, 1),  // "y"
-        QT_MOC_LITERAL(320, 1),  // "c"
-        QT_MOC_LITERAL(322, 23),  // "on_pushButton_7_clicked"
-        QT_MOC_LITERAL(346, 25)   // "on_Bresenham_line_clicked"
+        QT_MOC_LITERAL(77, 21),  // "on_pushButton_clicked"
+        QT_MOC_LITERAL(99, 23),  // "on_pushButton_2_clicked"
+        QT_MOC_LITERAL(123, 22),  // "on_spinBox_textChanged"
+        QT_MOC_LITERAL(146, 4),  // "arg1"
+        QT_MOC_LITERAL(151, 23),  // "on_pushButton_3_clicked"
+        QT_MOC_LITERAL(175, 23),  // "on_pushButton_6_clicked"
+        QT_MOC_LITERAL(199, 8),  // "setColor"
+        QT_MOC_LITERAL(208, 1),  // "x"
+        QT_MOC_LITERAL(210, 1),  // "y"
+        QT_MOC_LITERAL(212, 1),  // "c"
+        QT_MOC_LITERAL(214, 23),  // "on_pushButton_7_clicked"
+        QT_MOC_LITERAL(238, 25),  // "on_Bresenham_line_clicked"
+        QT_MOC_LITERAL(264, 20),  // "on_cir_polar_clicked"
+        QT_MOC_LITERAL(285, 23),  // "on_cir_midpoint_clicked"
+        QT_MOC_LITERAL(309, 23),  // "on_pushButton_4_clicked"
+        QT_MOC_LITERAL(333, 20),  // "on_ell_polar_clicked"
+        QT_MOC_LITERAL(354, 24)   // "on_cir_cartesian_clicked"
     },
     "MainWindow",
     "Mouse_Pressed",
@@ -129,23 +129,23 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "QPoint&",
     "pos",
     "on_show_axes_clicked",
-    "on_Draw_clicked",
-    "on_set_point1_clicked",
-    "on_set_point2_clicked",
     "on_pushButton_clicked",
     "on_pushButton_2_clicked",
     "on_spinBox_textChanged",
     "arg1",
     "on_pushButton_3_clicked",
-    "on_pushButton_4_clicked",
-    "on_pushButton_5_clicked",
     "on_pushButton_6_clicked",
     "setColor",
     "x",
     "y",
     "c",
     "on_pushButton_7_clicked",
-    "on_Bresenham_line_clicked"
+    "on_Bresenham_line_clicked",
+    "on_cir_polar_clicked",
+    "on_cir_midpoint_clicked",
+    "on_pushButton_4_clicked",
+    "on_ell_polar_clicked",
+    "on_cir_cartesian_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -170,15 +170,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        6,    0,  114,    2, 0x08,    4 /* Private */,
        7,    0,  115,    2, 0x08,    5 /* Private */,
        8,    0,  116,    2, 0x08,    6 /* Private */,
-       9,    0,  117,    2, 0x08,    7 /* Private */,
-      10,    0,  118,    2, 0x08,    8 /* Private */,
-      11,    0,  119,    2, 0x08,    9 /* Private */,
-      12,    1,  120,    2, 0x08,   10 /* Private */,
-      14,    0,  123,    2, 0x08,   12 /* Private */,
-      15,    0,  124,    2, 0x08,   13 /* Private */,
-      16,    0,  125,    2, 0x08,   14 /* Private */,
-      17,    0,  126,    2, 0x08,   15 /* Private */,
-      18,    3,  127,    2, 0x08,   16 /* Private */,
+       9,    1,  117,    2, 0x08,    7 /* Private */,
+      11,    0,  120,    2, 0x08,    9 /* Private */,
+      12,    0,  121,    2, 0x08,   10 /* Private */,
+      13,    3,  122,    2, 0x08,   11 /* Private */,
+      17,    0,  129,    2, 0x08,   15 /* Private */,
+      18,    0,  130,    2, 0x08,   16 /* Private */,
+      19,    0,  131,    2, 0x08,   17 /* Private */,
+      20,    0,  132,    2, 0x08,   18 /* Private */,
+      21,    0,  133,    2, 0x08,   19 /* Private */,
       22,    0,  134,    2, 0x08,   20 /* Private */,
       23,    0,  135,    2, 0x08,   21 /* Private */,
 
@@ -188,15 +188,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,   14,   15,   16,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,   19,   20,   21,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -219,12 +219,6 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QPoint &, std::false_type>,
         // method 'on_show_axes_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_Draw_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_set_point1_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_set_point2_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_2_clicked'
@@ -233,10 +227,6 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_pushButton_3_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_4_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_5_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_6_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -248,6 +238,16 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_pushButton_7_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_Bresenham_line_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_cir_polar_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_cir_midpoint_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_4_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_ell_polar_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_cir_cartesian_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -262,19 +262,19 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->Mouse_Pressed(); break;
         case 1: _t->showMousePosition((*reinterpret_cast< std::add_pointer_t<QPoint&>>(_a[1]))); break;
         case 2: _t->on_show_axes_clicked(); break;
-        case 3: _t->on_Draw_clicked(); break;
-        case 4: _t->on_set_point1_clicked(); break;
-        case 5: _t->on_set_point2_clicked(); break;
-        case 6: _t->on_pushButton_clicked(); break;
-        case 7: _t->on_pushButton_2_clicked(); break;
-        case 8: _t->on_spinBox_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->on_pushButton_3_clicked(); break;
-        case 10: _t->on_pushButton_4_clicked(); break;
-        case 11: _t->on_pushButton_5_clicked(); break;
-        case 12: _t->on_pushButton_6_clicked(); break;
-        case 13: _t->setColor((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
-        case 14: _t->on_pushButton_7_clicked(); break;
-        case 15: _t->on_Bresenham_line_clicked(); break;
+        case 3: _t->on_pushButton_clicked(); break;
+        case 4: _t->on_pushButton_2_clicked(); break;
+        case 5: _t->on_spinBox_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 6: _t->on_pushButton_3_clicked(); break;
+        case 7: _t->on_pushButton_6_clicked(); break;
+        case 8: _t->setColor((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
+        case 9: _t->on_pushButton_7_clicked(); break;
+        case 10: _t->on_Bresenham_line_clicked(); break;
+        case 11: _t->on_cir_polar_clicked(); break;
+        case 12: _t->on_cir_midpoint_clicked(); break;
+        case 13: _t->on_pushButton_4_clicked(); break;
+        case 14: _t->on_ell_polar_clicked(); break;
+        case 15: _t->on_cir_cartesian_clicked(); break;
         default: ;
         }
     }

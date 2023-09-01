@@ -43,12 +43,7 @@ module.exports.getChecksumCodeWord= function getChecksumCodeWord(dataword_raw,wo
     for(let i=0;i<(dataword.length/word_len);i++){
         wordList.push(dataword.substring(i*word_len,(i+1)*word_len));
     }
-    // console.log(wordList);
-    // for(let i of wordList){
-    //     let decimal=parseInt(i,2);//convert a binary string into decimal
-    //     let binary=decimal.toString(2);//convert a decimal into binary string
-    //     console.log(binary,typeof binary);
-    // }
+    
     let checksum=this.getChecksum(wordList,word_len);
     // console.log("binary check sum",checksum,"decimal checksum",parseInt(checksum,2));
     let checksum_codeword=dataword_raw+checksum;
