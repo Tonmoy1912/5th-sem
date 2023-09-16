@@ -13,6 +13,7 @@
 using namespace std;
 
 pair<int,int> point1={0,0},point2={0,0};
+vector<pair<int,int>> poly_points;
 int s_time=0.5;
 //vector<vector<int>> arr(800,vector<int>(800,0));
 
@@ -82,6 +83,9 @@ void MainWindow::Mouse_Pressed()
     //to rotate the axis at 90
     point2.first=(ui->frame->y/val);
     point2.second=(ui->frame->x/val);
+    if(ui->polygon->isChecked()){
+        poly_points.push_back(point2);
+    }
     //to fill the pixel
     for(int i=xval;i<xval+val;i++){
         for(int j=yval;j<yval+val;j++){
@@ -250,6 +254,7 @@ void MainWindow::on_pushButton_clicked()
     }
 
     s.clear();
+    poly_points.clear();
 
     //to clear the map
 //    for(int i=0;i<arr.size();i++){
@@ -1066,3 +1071,115 @@ void MainWindow::on_cir_cartesian_clicked()
     }
 }
 
+
+void MainWindow::on_draw_poly_clicked()
+{
+    int n=poly_points.size();
+    for(int i=0;i<n;i++){
+        point1=poly_points[i];
+        point2=poly_points[(i+1)%n];
+        //call a line drawing algo
+        on_pushButton_7_clicked();
+    }
+    point1=poly_points[n-2];
+    point2=poly_points[n-1];
+}
+
+
+
+
+//check connected 8
+void MainWindow::on_boundary_fill_clicked()
+{
+//    if(img.pixelIndex()!=qRgb(120,255,50)&&img.pixelIndex()!=qRgb(205,220,57)){
+
+//    }
+
+    boundary_fill(point2.first,point2.second,qRgb(205,220,57),qRgb(120,255,50));
+}
+
+
+void MainWindow::boundary_fill(int x,int y,QRgb fill_color,QRgb boundary_color){
+    int val=ui->spinBox->value();
+    int mid_point_x=x*val+(val)/2;
+    int mid_point_y=y*val+(val)/2;
+    if((mid_point_x<0) || (mid_point_x>700) || (mid_point_y<0) || (mid_point_y>700)){
+        return ;
+    }
+    if(img.pixel(mid_point_y,mid_point_x)!=boundary_color&&img.pixel(mid_point_y,mid_point_x)!=fill_color){
+        int x_low=x*val;
+        int y_low=y*val;
+        int x_high=x_low+val;
+        int y_high=y_low+val;
+        for(int i=x_low;i<x_high;i++){
+            for(int j=y_low;j<y_high;j++){
+                img.setPixel(j,i,fill_color);
+            }
+        }
+        ui->frame->setPixmap(QPixmap::fromImage(img));
+        boundary_fill(x,y+1,fill_color,boundary_color);
+        boundary_fill(x,y-1,fill_color,boundary_color);
+        boundary_fill(x-1,y,fill_color,boundary_color);
+        boundary_fill(x+1,y,fill_color,boundary_color);
+        if(ui->connected_8->isChecked()){
+            boundary_fill(x+1,y+1,fill_color,boundary_color);
+            boundary_fill(x+1,y-1,fill_color,boundary_color);
+            boundary_fill(x-1,y+1,fill_color,boundary_color);
+            boundary_fill(x-1,y-1,fill_color,boundary_color);
+        }
+    }
+
+}
+
+
+void MainWindow::on_flood_fill_clicked()
+{
+    int val=ui->spinBox->value();
+    int x=point2.first;
+    int y=point2.second;
+    int x_low=x*val;
+    int y_low=y*val;
+    int x_high=x_low+val;
+    int y_high=y_low+val;
+    for(int i=x_low;i<x_high;i++){
+        for(int j=y_low;j<y_high;j++){
+            img.setPixel(j,i,qRgb(0,0,0));
+        }
+    }
+    ui->frame->setPixmap(QPixmap::fromImage(img));
+    flood_fill(point2.first,point2.second,qRgb(0,0,0));
+}
+
+
+void MainWindow::flood_fill(int x,int y,QRgb old_color){
+    int val=ui->spinBox->value();
+    int mid_point_x=x*val+(val)/2;
+    int mid_point_y=y*val+(val)/2;
+    if((mid_point_x<0) || (mid_point_x>700) || (mid_point_y<0) || (mid_point_y>700)){
+        return ;
+    }
+    QRgb fill_color=qRgb(121,85,72);
+    if(img.pixel(mid_point_y,mid_point_x)==old_color/*||img.pixel(mid_point_y,mid_point_x)==qRgb(255,255,0)*/){
+        int x_low=x*val;
+        int y_low=y*val;
+        int x_high=x_low+val;
+        int y_high=y_low+val;
+        for(int i=x_low;i<x_high;i++){
+            for(int j=y_low;j<y_high;j++){
+                img.setPixel(j,i,fill_color);
+            }
+        }
+        ui->frame->setPixmap(QPixmap::fromImage(img));
+        flood_fill(x,y+1,old_color);
+        flood_fill(x,y-1,old_color);
+        flood_fill(x-1,y,old_color);
+        flood_fill(x+1,y,old_color);
+        if(ui->connected_8->isChecked()){
+            flood_fill(x+1,y+1,old_color);
+            flood_fill(x+1,y-1,old_color);
+            flood_fill(x-1,y+1,old_color);
+            flood_fill(x-1,y-1,old_color);
+        }
+    }
+
+}

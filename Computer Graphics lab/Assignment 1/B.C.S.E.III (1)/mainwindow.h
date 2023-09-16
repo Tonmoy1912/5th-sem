@@ -62,6 +62,16 @@ private slots:
 
     void on_cir_cartesian_clicked();
 
+    void on_draw_poly_clicked();
+
+    void on_boundary_fill_clicked();
+
+    void boundary_fill(int x,int y,QRgb fill_color,QRgb boundary_color);
+
+    void on_flood_fill_clicked();
+
+    void flood_fill(int x,int y,QRgb old_color);
+
 private:
     Ui::MainWindow *ui;
     QPoint p1,p2;

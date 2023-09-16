@@ -43,13 +43,21 @@ list_files(){
     echo "List of files greater than or equal to ${min_size} bytes:" >> $filename
     echo "-----------------------------------------"
     echo "-----------------------------------------" >> $filename
-    echo "File Name      | Size (Bytes)"
-    echo "File Name      | Size (Bytes)" >> $filename
-    echo "-----------------------------------------"
-    echo "-----------------------------------------" >> $filename
 
-    find . -type f -size +${min_size}c -exec du -b {} \; | awk -v min_size="${min_size}" '$1 >= min_size {printf "%-15s | %s\n", $2, $1}'
-    find . -type f -size +${min_size}c -exec du -b {} \; | awk -v min_size="${min_size}" '$1 >= min_size {printf "%-15s | %s\n", $2, $1}' >> $filename
+    for file in "."/*
+    do
+        size=$(du -b "$file")
+        for i in $size
+        do
+            # echo $i
+            if [ "$i" -ge "$min_size" ]
+            then
+                echo "FileName: $file   |  Size: $i bytes"
+                echo "FileName: $file   |  Size: $i bytes" >> $filename
+            fi
+            break
+        done
+    done
 
     echo "-----------------------------------------"
     echo "-----------------------------------------" >> $filename

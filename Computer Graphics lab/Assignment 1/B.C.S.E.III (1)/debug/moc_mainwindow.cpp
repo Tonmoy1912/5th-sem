@@ -63,11 +63,20 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "on_cir_midpoint_clicked",
     "on_pushButton_4_clicked",
     "on_ell_polar_clicked",
-    "on_cir_cartesian_clicked"
+    "on_cir_cartesian_clicked",
+    "on_draw_poly_clicked",
+    "on_boundary_fill_clicked",
+    "boundary_fill",
+    "QRgb",
+    "fill_color",
+    "boundary_color",
+    "on_flood_fill_clicked",
+    "flood_fill",
+    "old_color"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[48];
+    uint offsetsAndSizes[66];
     char stringdata0[11];
     char stringdata1[14];
     char stringdata2[1];
@@ -92,6 +101,15 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata21[24];
     char stringdata22[21];
     char stringdata23[25];
+    char stringdata24[21];
+    char stringdata25[25];
+    char stringdata26[14];
+    char stringdata27[5];
+    char stringdata28[11];
+    char stringdata29[15];
+    char stringdata30[22];
+    char stringdata31[11];
+    char stringdata32[10];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -120,7 +138,16 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(285, 23),  // "on_cir_midpoint_clicked"
         QT_MOC_LITERAL(309, 23),  // "on_pushButton_4_clicked"
         QT_MOC_LITERAL(333, 20),  // "on_ell_polar_clicked"
-        QT_MOC_LITERAL(354, 24)   // "on_cir_cartesian_clicked"
+        QT_MOC_LITERAL(354, 24),  // "on_cir_cartesian_clicked"
+        QT_MOC_LITERAL(379, 20),  // "on_draw_poly_clicked"
+        QT_MOC_LITERAL(400, 24),  // "on_boundary_fill_clicked"
+        QT_MOC_LITERAL(425, 13),  // "boundary_fill"
+        QT_MOC_LITERAL(439, 4),  // "QRgb"
+        QT_MOC_LITERAL(444, 10),  // "fill_color"
+        QT_MOC_LITERAL(455, 14),  // "boundary_color"
+        QT_MOC_LITERAL(470, 21),  // "on_flood_fill_clicked"
+        QT_MOC_LITERAL(492, 10),  // "flood_fill"
+        QT_MOC_LITERAL(503, 9)   // "old_color"
     },
     "MainWindow",
     "Mouse_Pressed",
@@ -145,7 +172,16 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_cir_midpoint_clicked",
     "on_pushButton_4_clicked",
     "on_ell_polar_clicked",
-    "on_cir_cartesian_clicked"
+    "on_cir_cartesian_clicked",
+    "on_draw_poly_clicked",
+    "on_boundary_fill_clicked",
+    "boundary_fill",
+    "QRgb",
+    "fill_color",
+    "boundary_color",
+    "on_flood_fill_clicked",
+    "flood_fill",
+    "old_color"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -157,7 +193,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -165,22 +201,27 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  110,    2, 0x0a,    1 /* Public */,
-       3,    1,  111,    2, 0x0a,    2 /* Public */,
-       6,    0,  114,    2, 0x08,    4 /* Private */,
-       7,    0,  115,    2, 0x08,    5 /* Private */,
-       8,    0,  116,    2, 0x08,    6 /* Private */,
-       9,    1,  117,    2, 0x08,    7 /* Private */,
-      11,    0,  120,    2, 0x08,    9 /* Private */,
-      12,    0,  121,    2, 0x08,   10 /* Private */,
-      13,    3,  122,    2, 0x08,   11 /* Private */,
-      17,    0,  129,    2, 0x08,   15 /* Private */,
-      18,    0,  130,    2, 0x08,   16 /* Private */,
-      19,    0,  131,    2, 0x08,   17 /* Private */,
-      20,    0,  132,    2, 0x08,   18 /* Private */,
-      21,    0,  133,    2, 0x08,   19 /* Private */,
-      22,    0,  134,    2, 0x08,   20 /* Private */,
-      23,    0,  135,    2, 0x08,   21 /* Private */,
+       1,    0,  140,    2, 0x0a,    1 /* Public */,
+       3,    1,  141,    2, 0x0a,    2 /* Public */,
+       6,    0,  144,    2, 0x08,    4 /* Private */,
+       7,    0,  145,    2, 0x08,    5 /* Private */,
+       8,    0,  146,    2, 0x08,    6 /* Private */,
+       9,    1,  147,    2, 0x08,    7 /* Private */,
+      11,    0,  150,    2, 0x08,    9 /* Private */,
+      12,    0,  151,    2, 0x08,   10 /* Private */,
+      13,    3,  152,    2, 0x08,   11 /* Private */,
+      17,    0,  159,    2, 0x08,   15 /* Private */,
+      18,    0,  160,    2, 0x08,   16 /* Private */,
+      19,    0,  161,    2, 0x08,   17 /* Private */,
+      20,    0,  162,    2, 0x08,   18 /* Private */,
+      21,    0,  163,    2, 0x08,   19 /* Private */,
+      22,    0,  164,    2, 0x08,   20 /* Private */,
+      23,    0,  165,    2, 0x08,   21 /* Private */,
+      24,    0,  166,    2, 0x08,   22 /* Private */,
+      25,    0,  167,    2, 0x08,   23 /* Private */,
+      26,    4,  168,    2, 0x08,   24 /* Private */,
+      30,    0,  177,    2, 0x08,   29 /* Private */,
+      31,    3,  178,    2, 0x08,   30 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -199,6 +240,11 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, 0x80000000 | 27, 0x80000000 | 27,   14,   15,   28,   29,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, 0x80000000 | 27,   14,   15,   32,
 
        0        // eod
 };
@@ -248,7 +294,24 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_ell_polar_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_cir_cartesian_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_draw_poly_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_boundary_fill_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'boundary_fill'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QRgb, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QRgb, std::false_type>,
+        // method 'on_flood_fill_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'flood_fill'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QRgb, std::false_type>
     >,
     nullptr
 } };
@@ -275,6 +338,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->on_pushButton_4_clicked(); break;
         case 14: _t->on_ell_polar_clicked(); break;
         case 15: _t->on_cir_cartesian_clicked(); break;
+        case 16: _t->on_draw_poly_clicked(); break;
+        case 17: _t->on_boundary_fill_clicked(); break;
+        case 18: _t->boundary_fill((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QRgb>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QRgb>>(_a[4]))); break;
+        case 19: _t->on_flood_fill_clicked(); break;
+        case 20: _t->flood_fill((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QRgb>>(_a[3]))); break;
         default: ;
         }
     }
@@ -299,13 +367,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 21;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 21)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 16;
+        _id -= 21;
     }
     return _id;
 }

@@ -1,39 +1,44 @@
 .model small
 .stack 100h
 .data
-prompt db "Enter a letter in uppercase (A-Z): $"
-result db "The letter in lowercase is: $"
+    prompt db "Enter a letter in uppercase (A-Z): $"
+    result db 13,10,"The letter in lowercase is: $"
+
+
 .code
 main proc
-    mov ah, 09h        ; Print the prompt
-    lea dx, prompt
+
+    mov ax,@data
+    mov ds,ax
+
+    mov ah,09h        
+    lea dx,prompt
     int 21h
     
-    mov ah, 01h        ; Read a character from the user
+    mov ah,01h        
     int 21h
-    mov bl, al         ; Copy the input character to BL
+    mov bl,al         
     
-    ; Check if the character is an uppercase letter (A-Z)
-    cmp bl, 'A'
+    cmp bl,'A'
     jl not_uppercase
-    cmp bl, 'Z'
+    cmp bl,'Z'
     jg not_uppercase
     
-    ; If it's an uppercase letter, convert it to lowercase
-    add bl, 32         ; The difference between 'A' and 'a' in ASCII is 32
-    mov al, bl         ; Store the lowercase letter in AL
+    
+    add bl,32         
+    mov al,bl         
     
 not_uppercase:
     
-    mov ah, 09h        ; Print the result message
-    lea dx, result
+    mov ah,09h        
+    lea dx,result
     int 21h
     
-    mov dl, al         ; Load the lowercase letter
-    mov ah, 02h        ; Print the character in DL
+    mov dl,al         
+    mov ah,02h        
     int 21h
     
-    mov ah, 4Ch        ; Exit program
+    mov ah,4Ch        
     int 21h
 main endp
 end main

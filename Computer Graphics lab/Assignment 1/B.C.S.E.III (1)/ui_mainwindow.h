@@ -62,6 +62,11 @@ public:
     QLabel *exe_time_ell_midpoint;
     QLabel *exe_time_cir_cartesian;
     QPushButton *cir_cartesian;
+    QPushButton *draw_poly;
+    QPushButton *boundary_fill;
+    QCheckBox *connected_8;
+    QCheckBox *polygon;
+    QPushButton *flood_fill;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -196,6 +201,21 @@ public:
         cir_cartesian = new QPushButton(centralWidget);
         cir_cartesian->setObjectName("cir_cartesian");
         cir_cartesian->setGeometry(QRect(720, 360, 80, 18));
+        draw_poly = new QPushButton(centralWidget);
+        draw_poly->setObjectName("draw_poly");
+        draw_poly->setGeometry(QRect(800, 500, 80, 18));
+        boundary_fill = new QPushButton(centralWidget);
+        boundary_fill->setObjectName("boundary_fill");
+        boundary_fill->setGeometry(QRect(810, 530, 80, 18));
+        connected_8 = new QCheckBox(centralWidget);
+        connected_8->setObjectName("connected_8");
+        connected_8->setGeometry(QRect(710, 530, 81, 18));
+        polygon = new QCheckBox(centralWidget);
+        polygon->setObjectName("polygon");
+        polygon->setGeometry(QRect(710, 500, 81, 18));
+        flood_fill = new QPushButton(centralWidget);
+        flood_fill->setObjectName("flood_fill");
+        flood_fill->setGeometry(QRect(910, 530, 80, 18));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
@@ -243,6 +263,11 @@ public:
         exe_time_ell_midpoint->setText(QString());
         exe_time_cir_cartesian->setText(QString());
         cir_cartesian->setText(QCoreApplication::translate("MainWindow", "Circle Cartesian", nullptr));
+        draw_poly->setText(QCoreApplication::translate("MainWindow", "Draw Polygon", nullptr));
+        boundary_fill->setText(QCoreApplication::translate("MainWindow", "Boundary fill", nullptr));
+        connected_8->setText(QCoreApplication::translate("MainWindow", "Connected 8", nullptr));
+        polygon->setText(QCoreApplication::translate("MainWindow", "Polygon", nullptr));
+        flood_fill->setText(QCoreApplication::translate("MainWindow", "Flood fill", nullptr));
     } // retranslateUi
 
 };
