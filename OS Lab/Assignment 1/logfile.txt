@@ -10,3 +10,31 @@ FileName: ./BCSE-OS-Assignments-I-2023[809].pdf   |  Size: 126270 bytes
 FileName: ./q3.sh   |  Size: 1025 bytes
 -----------------------------------------
 %Exit%
+tonmoy%Display Greeting%
+Hello tonmoy good evening
+tonmoy%List Large files%
+List of files greater than or equal to 1000 bytes:
+-----------------------------------------
+FileName: ./3.sh   |  Size: 1275 bytes
+FileName: ./4.sh   |  Size: 1774 bytes
+FileName: ./5.sh   |  Size: 2158 bytes
+FileName: ./8.sh   |  Size: 2371 bytes
+FileName: ./Ass1_report.docx   |  Size: 429418 bytes
+FileName: ./BCSE-OS-Assignments-I-2023[809].pdf   |  Size: 126270 bytes
+FileName: ./dir   |  Size: 4096 bytes
+FileName: ./my-deleted-files   |  Size: 4114 bytes
+FileName: ./q3.sh   |  Size: 1038 bytes
+FileName: ./tempCodeRunnerFile.sh   |  Size: 1038 bytes
+-----------------------------------------
+tonmoy%Disk usage%
+Disk Usage Information:
+-----------------------
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           735M  2.1M  733M   1% /run
+/dev/nvme0n1p2  468G   52G  393G  12% /
+tmpfs           3.6G   47M  3.6G   2% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+/dev/nvme0n1p1  511M  6.1M  505M   2% /boot/efi
+tmpfs           735M  112K  735M   1% /run/user/1000
+tonmoy%View Log File%
+tonmoy%Exit%

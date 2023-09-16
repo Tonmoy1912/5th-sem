@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Write a shell program to duplicate the UNIX rm command with the following features:
-# a. Instead of deleting the files, it will move them to a my-deleted-files directory. If the file already exists in the my-deleted-files directory, then the existing file (in the my-deleted-files) will have the version number zero (0) appended to it and the newly deleted file will have version number one (1) appended to it. Go on incrementing the version nos., if required.
-# b. The command will have a switch -c that will clear the entire my-deleted-files directory after asking for confirmation. 
-
-
-
-
 deleted_dir="my-deleted-files"
 
 

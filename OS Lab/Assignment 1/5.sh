@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#Write a script called birthday_match.sh that takes two birthdays of the form DD/MM/YYYY
-# (e.g., 15/05/2000) and returns whether there is a match if the two people were born on the
-# same day of the week (e.g., Friday). And then find out the age/s in years/months/days.
-
 # Function to calculate the age
 calculate_age() {
     bd_date="$1"

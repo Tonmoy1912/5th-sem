@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Extend the shell script written in (6) to perform the following task: User is asked to enter two
-# different patterns or words. The first pattern will have to be matched with the contents of the
-# file and replaced by the second pattern if a match occurs. If the first pattern does not occur in
-# the file, an appropriate error message will be displayed
-
 read -p "Enter the file name: " filename
 
 #to check whether the file exist
