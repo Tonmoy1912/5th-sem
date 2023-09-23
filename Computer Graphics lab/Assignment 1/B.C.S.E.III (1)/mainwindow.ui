@@ -45,8 +45,8 @@
    <widget class="QLabel" name="mouse_movement">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>70</y>
+      <x>710</x>
+      <y>40</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -61,8 +61,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>50</y>
+      <x>710</x>
+      <y>20</y>
       <width>111</width>
       <height>20</height>
      </rect>
@@ -74,8 +74,8 @@
    <widget class="QLabel" name="mouse_pressed">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>70</y>
+      <x>830</x>
+      <y>40</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -90,8 +90,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>50</y>
+      <x>850</x>
+      <y>10</y>
       <width>81</width>
       <height>20</height>
      </rect>
@@ -136,8 +136,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QCheckBox" name="show_axes">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>10</y>
+      <x>710</x>
+      <y>0</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -149,8 +149,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>110</y>
+      <x>710</x>
+      <y>80</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -162,8 +162,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>160</y>
+      <x>900</x>
+      <y>100</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -175,8 +175,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QSpinBox" name="spinBox">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>160</y>
+      <x>830</x>
+      <y>80</y>
       <width>42</width>
       <height>22</height>
      </rect>
@@ -188,8 +188,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>160</y>
+      <x>900</x>
+      <y>80</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -201,8 +201,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>190</y>
+      <x>720</x>
+      <y>130</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -214,8 +214,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>190</y>
+      <x>810</x>
+      <y>130</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -227,8 +227,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="Bresenham_line">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>190</y>
+      <x>900</x>
+      <y>130</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -240,8 +240,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>230</y>
+      <x>730</x>
+      <y>150</y>
       <width>71</width>
       <height>20</height>
      </rect>
@@ -253,8 +253,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QLabel" name="execution_time">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>220</y>
+      <x>810</x>
+      <y>150</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -269,8 +269,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="cir_polar">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>300</y>
+      <x>710</x>
+      <y>220</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -282,8 +282,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>270</y>
+      <x>710</x>
+      <y>190</y>
       <width>71</width>
       <height>20</height>
      </rect>
@@ -295,8 +295,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QSpinBox" name="Radius">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>270</y>
+      <x>790</x>
+      <y>190</y>
       <width>42</width>
       <height>22</height>
      </rect>
@@ -308,8 +308,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="cir_midpoint">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>330</y>
+      <x>710</x>
+      <y>250</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -322,7 +322,7 @@ background-color: rgb(85, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>720</x>
-      <y>390</y>
+      <y>310</y>
       <width>21</width>
       <height>20</height>
      </rect>
@@ -334,8 +334,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>390</y>
+      <x>810</x>
+      <y>310</y>
       <width>21</width>
       <height>20</height>
      </rect>
@@ -348,10 +348,13 @@ background-color: rgb(85, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>750</x>
-      <y>390</y>
+      <y>310</y>
       <width>42</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <number>0</number>
     </property>
     <property name="value">
      <number>5</number>
@@ -360,8 +363,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QSpinBox" name="r2">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>390</y>
+      <x>840</x>
+      <y>310</y>
       <width>42</width>
       <height>22</height>
      </rect>
@@ -373,8 +376,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>460</y>
+      <x>710</x>
+      <y>370</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -386,8 +389,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="ell_polar">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>430</y>
+      <x>710</x>
+      <y>340</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -399,8 +402,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QLabel" name="exe_time_cir_polar">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>300</y>
+      <x>800</x>
+      <y>220</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -415,8 +418,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QLabel" name="exe_time_cir_midpoint">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>330</y>
+      <x>800</x>
+      <y>250</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -432,7 +435,7 @@ background-color: rgb(85, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>820</x>
-      <y>420</y>
+      <y>340</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -448,7 +451,7 @@ background-color: rgb(85, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>820</x>
-      <y>460</y>
+      <y>380</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -463,8 +466,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QLabel" name="exe_time_cir_cartesian">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>360</y>
+      <x>800</x>
+      <y>280</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -479,8 +482,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="cir_cartesian">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>360</y>
+      <x>710</x>
+      <y>280</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -492,8 +495,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="draw_poly">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>500</y>
+      <x>790</x>
+      <y>420</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -505,8 +508,8 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="boundary_fill">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>530</y>
+      <x>790</x>
+      <y>450</y>
       <width>80</width>
       <height>18</height>
      </rect>
@@ -519,7 +522,7 @@ background-color: rgb(85, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>710</x>
-      <y>530</y>
+      <y>410</y>
       <width>81</width>
       <height>18</height>
      </rect>
@@ -532,7 +535,7 @@ background-color: rgb(85, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>710</x>
-      <y>500</y>
+      <y>390</y>
       <width>81</width>
       <height>18</height>
      </rect>
@@ -544,14 +547,124 @@ background-color: rgb(85, 255, 255);</string>
    <widget class="QPushButton" name="flood_fill">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>530</y>
+      <x>880</x>
+      <y>450</y>
       <width>80</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
      <string>Flood fill</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="scanline">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>420</y>
+      <width>80</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Scanline</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="transformation">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>480</y>
+      <width>81</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Transformation mode</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="translation">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>500</y>
+      <width>80</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Translation</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="transX">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>490</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-90</number>
+    </property>
+    <property name="value">
+     <number>5</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="transY">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>490</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-90</number>
+    </property>
+    <property name="value">
+     <number>5</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>490</y>
+      <width>21</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>490</y>
+      <width>21</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="scaling">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>530</y>
+      <width>80</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Scaling</string>
     </property>
    </widget>
   </widget>

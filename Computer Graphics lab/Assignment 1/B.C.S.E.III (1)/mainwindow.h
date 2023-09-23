@@ -72,6 +72,13 @@ private slots:
 
     void flood_fill(int x,int y,QRgb old_color);
 
+    void on_scanline_clicked();
+    void myDelay();
+
+    void on_translation_clicked();
+
+    void on_scaling_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPoint p1,p2;

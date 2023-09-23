@@ -18,6 +18,12 @@ int s_time=0.5;
 //vector<vector<int>> arr(800,vector<int>(800,0));
 
 set<pair<pair<int,int>,int>> s;
+vector<vector<int>> trans;
+
+void MainWindow::myDelay(){
+    QCoreApplication::processEvents();
+    QThread::msleep(5);//in milisecond
+}
 
 QImage img=QImage(700,700,QImage::Format_RGB888);
 MainWindow::MainWindow(QWidget *parent) :
@@ -255,6 +261,7 @@ void MainWindow::on_pushButton_clicked()
 
     s.clear();
     poly_points.clear();
+    trans.clear();
 
     //to clear the map
 //    for(int i=0;i<arr.size();i++){
@@ -364,6 +371,9 @@ void MainWindow::setColor(int x,int y,int c){
             }
             else if(c==8){
                 img.setPixel(j,i,qRgb(100,50,255));
+            }
+            else if(c==9){
+                img.setPixel(j,i,qRgb(205,220,57));
             }
         }
     }
@@ -478,6 +488,7 @@ void MainWindow::on_pushButton_6_clicked()
 }
 
 
+//DDA Algorithm
 void MainWindow::on_pushButton_7_clicked()
 {
     int x0=point1.first,y0=point1.second;
@@ -588,6 +599,14 @@ void MainWindow::on_pushButton_7_clicked()
     int val=ui->spinBox->value();
     int originX=350/val;
     int originY=350/val;
+
+    //for transformation operation
+    if(ui->transformation->isChecked()){
+        for(auto it:points){
+            //        setColor(it.first,it.second,1);
+            trans.push_back({it.first-originX,it.second-originY,2});
+        }
+    }
 
 
     for(auto it:points){
@@ -1083,6 +1102,7 @@ void MainWindow::on_draw_poly_clicked()
     }
     point1=poly_points[n-2];
     point2=poly_points[n-1];
+    poly_points.clear();
 }
 
 
@@ -1101,6 +1121,8 @@ void MainWindow::on_boundary_fill_clicked()
 
 void MainWindow::boundary_fill(int x,int y,QRgb fill_color,QRgb boundary_color){
     int val=ui->spinBox->value();
+    int originX=350/val;
+    int originY=350/val;
     int mid_point_x=x*val+(val)/2;
     int mid_point_y=y*val+(val)/2;
     if((mid_point_x<0) || (mid_point_x>700) || (mid_point_y<0) || (mid_point_y>700)){
@@ -1115,6 +1137,10 @@ void MainWindow::boundary_fill(int x,int y,QRgb fill_color,QRgb boundary_color){
             for(int j=y_low;j<y_high;j++){
                 img.setPixel(j,i,fill_color);
             }
+        }
+        //for translation operation
+        if(ui->transformation->isChecked()){
+            trans.push_back({x-originX,y-originY,9});//9 for boundary fill
         }
         ui->frame->setPixmap(QPixmap::fromImage(img));
         boundary_fill(x,y+1,fill_color,boundary_color);
@@ -1183,3 +1209,162 @@ void MainWindow::flood_fill(int x,int y,QRgb old_color){
     }
 
 }
+
+void MainWindow::on_scanline_clicked()
+{
+    QRgb boundary_color=qRgb(120,255,50);
+    int val=ui->spinBox->value();
+    int high=700/val;
+    vector<int> arr;
+    vector<pair<int,int>> temp=poly_points;
+//    sort(temp.begin(),temp.end());
+//    int y_high=700/val;
+    for(int i=0;i<high;i++){
+        int j=0;
+        while(j<high){
+            int mid_point_x=i*val+(val)/2;
+            int mid_point_y=j*val+(val)/2;
+            //either on the edge or vertex
+            if(img.pixel(mid_point_y,mid_point_x)==boundary_color){
+//                arr.push_back(j);
+//                int t=j;
+//                while(img.pixel((t+1)*val+val,mid_point_x)==boundary_color){
+//                    t++;
+//                }
+//                if(t!=j){//horizontal line break
+//                    j=t;
+//                    continue;
+//                }
+                int k=0;
+                int n=temp.size();
+                while(k<n){
+                    if(temp[k].first==i&&temp[k].second==j){
+                        break;
+                    }
+                    k++;
+                }
+                if(k>=n){//not a vertex
+                    arr.push_back(j);
+//                    int t=j;
+//                    while(img.pixel((t)*val+val/2,mid_point_x)==boundary_color){
+//                        t++;
+//                    }
+//                    if(t!=j){//horizontal line break
+//                        j=t;
+//                        continue;
+//                    }
+                }
+                else{//is a vertex
+                    arr.push_back(j);
+
+                    pair<int,int> left,right;
+                    if(k==0){
+                        left=temp.back();
+                    }
+                    else{
+                        left=temp[k-1];
+                    }
+                    if(k==n-1){
+                        right=temp[0];
+                    }
+                    else{
+                        right=temp[k+1];
+                    }
+                    if(right.second<left.second){
+                        swap(right.first,left.first);
+                        swap(right.second,left.second);
+                    }
+                    int decision_val=(right.first-i)*(left.first-i);
+                    if(decision_val>0){//two edges are on same side
+                        arr.push_back(j);
+//                        int t=j;
+//                        while(img.pixel((t)*val+val/2,mid_point_x)==boundary_color){
+//                            t++;
+//                        }
+//                        if(t!=j){//horizontal line break
+//                            j=t;
+//                            continue;
+//                        }
+                    }
+//                    else if(decision_val==0){//horizontal line(require odd number of horizontal node)
+//                        if(i==right.first&&right.second>j){
+//                            j=right.second;
+//                            continue;//skip to the right end of the horizontal line
+//                        }
+//                    }
+//                    else{
+//                        int t=j;
+//                        while(img.pixel((t)*val+val/2,mid_point_x)==boundary_color){
+//                            t++;
+//                        }
+//                        if(t!=j){//horizontal line break
+//                            j=t;
+//                            continue;
+//                        }
+//                    }
+                }
+            }
+
+            j++;
+        }
+        j=0;
+        int n=arr.size();
+        n=n-n%2;
+        while(j<n){//n is always even
+            int left=arr[j++];
+            int right=arr[j++];
+            for(int k=left+1;k<right;k++){
+                int mid_point_x=i*val+(val)/2;
+                int mid_point_y=k*val+(val)/2;
+                if(img.pixel(mid_point_y,mid_point_x)!=boundary_color){
+                    myDelay();
+                    setColor(i,k,5);
+                }
+            }
+        }
+        arr.clear();
+    }
+}
+
+
+void MainWindow::on_translation_clicked()
+{
+    int val=ui->spinBox->value();
+    int X=-ui->transY->value();
+    int Y=ui->transX->value();
+    vector<vector<int>> arr;
+    //translation operation
+    for(auto it:trans){
+        int translatedX=it[0]+X;
+        int translatedY=it[1]+Y;
+        arr.push_back({translatedX,translatedY,it[2]});
+    }
+    int originX=350/val;
+    int originY=350/val;
+    for(auto it:arr){
+        myDelay();
+        setColor(it[0]+originX,it[1]+originY,it[2]);
+    }
+}
+
+
+void MainWindow::on_scaling_clicked()
+{
+    int val=ui->spinBox->value();
+    int X=ui->transY->value();
+    int Y=ui->transX->value();
+    vector<vector<int>> arr;
+    //translation operation
+    for(auto it:trans){
+        int scaledX=it[0]*X;
+        int scaledY=it[1]*Y;
+        arr.push_back({scaledX,scaledY,it[2]});
+    }
+    int originX=350/val;
+    int originY=350/val;
+    for(auto it:arr){
+        myDelay();
+        setColor(it[0]+originX,it[1]+originY,it[2]);
+    }
+}
+
