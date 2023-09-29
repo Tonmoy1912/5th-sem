@@ -17,6 +17,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -68,13 +69,19 @@ public:
     QCheckBox *polygon;
     QPushButton *flood_fill;
     QPushButton *scanline;
-    QCheckBox *transformation;
     QPushButton *translation;
     QSpinBox *transX;
     QSpinBox *transY;
     QLabel *label_7;
     QLabel *label_8;
     QPushButton *scaling;
+    QPushButton *shear;
+    QPushButton *rotation;
+    QSpinBox *angle;
+    QLabel *label_9;
+    QPushButton *reflect;
+    QRadioButton *radioX;
+    QRadioButton *radioY;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -212,47 +219,67 @@ public:
         cir_cartesian->setGeometry(QRect(710, 280, 80, 18));
         draw_poly = new QPushButton(centralWidget);
         draw_poly->setObjectName("draw_poly");
-        draw_poly->setGeometry(QRect(790, 420, 80, 18));
+        draw_poly->setGeometry(QRect(810, 420, 80, 18));
         boundary_fill = new QPushButton(centralWidget);
         boundary_fill->setObjectName("boundary_fill");
-        boundary_fill->setGeometry(QRect(790, 450, 80, 18));
+        boundary_fill->setGeometry(QRect(810, 450, 80, 18));
         connected_8 = new QCheckBox(centralWidget);
         connected_8->setObjectName("connected_8");
-        connected_8->setGeometry(QRect(710, 410, 81, 18));
+        connected_8->setGeometry(QRect(710, 450, 81, 18));
         polygon = new QCheckBox(centralWidget);
         polygon->setObjectName("polygon");
-        polygon->setGeometry(QRect(710, 390, 81, 18));
+        polygon->setGeometry(QRect(710, 420, 81, 18));
         flood_fill = new QPushButton(centralWidget);
         flood_fill->setObjectName("flood_fill");
-        flood_fill->setGeometry(QRect(880, 450, 80, 18));
+        flood_fill->setGeometry(QRect(910, 450, 80, 18));
         scanline = new QPushButton(centralWidget);
         scanline->setObjectName("scanline");
-        scanline->setGeometry(QRect(880, 420, 80, 18));
-        transformation = new QCheckBox(centralWidget);
-        transformation->setObjectName("transformation");
-        transformation->setGeometry(QRect(710, 480, 81, 18));
+        scanline->setGeometry(QRect(910, 420, 80, 18));
         translation = new QPushButton(centralWidget);
         translation->setObjectName("translation");
-        translation->setGeometry(QRect(710, 500, 80, 18));
+        translation->setGeometry(QRect(710, 490, 80, 18));
         transX = new QSpinBox(centralWidget);
         transX->setObjectName("transX");
-        transX->setGeometry(QRect(840, 490, 42, 22));
+        transX->setGeometry(QRect(820, 470, 42, 22));
         transX->setMinimum(-90);
         transX->setValue(5);
         transY = new QSpinBox(centralWidget);
         transY->setObjectName("transY");
-        transY->setGeometry(QRect(920, 490, 42, 22));
+        transY->setGeometry(QRect(820, 500, 42, 22));
         transY->setMinimum(-90);
         transY->setValue(5);
         label_7 = new QLabel(centralWidget);
         label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(810, 490, 21, 20));
+        label_7->setGeometry(QRect(800, 470, 21, 20));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(890, 490, 21, 20));
+        label_8->setGeometry(QRect(800, 500, 21, 20));
         scaling = new QPushButton(centralWidget);
         scaling->setObjectName("scaling");
         scaling->setGeometry(QRect(710, 530, 80, 18));
+        shear = new QPushButton(centralWidget);
+        shear->setObjectName("shear");
+        shear->setGeometry(QRect(810, 530, 80, 18));
+        rotation = new QPushButton(centralWidget);
+        rotation->setObjectName("rotation");
+        rotation->setGeometry(QRect(910, 530, 80, 18));
+        angle = new QSpinBox(centralWidget);
+        angle->setObjectName("angle");
+        angle->setGeometry(QRect(910, 490, 42, 22));
+        angle->setMinimum(-360);
+        angle->setValue(90);
+        label_9 = new QLabel(centralWidget);
+        label_9->setObjectName("label_9");
+        label_9->setGeometry(QRect(880, 490, 21, 20));
+        reflect = new QPushButton(centralWidget);
+        reflect->setObjectName("reflect");
+        reflect->setGeometry(QRect(710, 560, 80, 18));
+        radioX = new QRadioButton(centralWidget);
+        radioX->setObjectName("radioX");
+        radioX->setGeometry(QRect(810, 560, 69, 18));
+        radioY = new QRadioButton(centralWidget);
+        radioY->setObjectName("radioY");
+        radioY->setGeometry(QRect(860, 560, 69, 18));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
@@ -306,11 +333,16 @@ public:
         polygon->setText(QCoreApplication::translate("MainWindow", "Polygon", nullptr));
         flood_fill->setText(QCoreApplication::translate("MainWindow", "Flood fill", nullptr));
         scanline->setText(QCoreApplication::translate("MainWindow", "Scanline", nullptr));
-        transformation->setText(QCoreApplication::translate("MainWindow", "Transformation mode", nullptr));
         translation->setText(QCoreApplication::translate("MainWindow", "Translation", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Y", nullptr));
         scaling->setText(QCoreApplication::translate("MainWindow", "Scaling", nullptr));
+        shear->setText(QCoreApplication::translate("MainWindow", "Shear", nullptr));
+        rotation->setText(QCoreApplication::translate("MainWindow", "Rotation", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "Angle", nullptr));
+        reflect->setText(QCoreApplication::translate("MainWindow", "Reflect", nullptr));
+        radioX->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        radioY->setText(QCoreApplication::translate("MainWindow", "Y", nullptr));
     } // retranslateUi
 
 };

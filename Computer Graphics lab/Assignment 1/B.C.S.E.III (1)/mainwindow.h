@@ -33,7 +33,7 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_spinBox_textChanged(const QString &arg1);
+    void on_spinBox_textChanged();
 
 
     void on_pushButton_3_clicked();
@@ -78,6 +78,12 @@ private slots:
     void on_translation_clicked();
 
     void on_scaling_clicked();
+
+    void on_shear_clicked();
+
+    void on_rotation_clicked();
+
+    void on_reflect_clicked();
 
 private:
     Ui::MainWindow *ui;

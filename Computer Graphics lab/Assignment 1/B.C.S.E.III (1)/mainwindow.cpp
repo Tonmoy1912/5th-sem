@@ -18,7 +18,7 @@ int s_time=0.5;
 //vector<vector<int>> arr(800,vector<int>(800,0));
 
 set<pair<pair<int,int>,int>> s;
-vector<vector<int>> trans;
+//vector<vector<int>> trans;
 
 void MainWindow::myDelay(){
     QCoreApplication::processEvents();
@@ -261,7 +261,7 @@ void MainWindow::on_pushButton_clicked()
 
     s.clear();
     poly_points.clear();
-    trans.clear();
+//    trans.clear();
 
     //to clear the map
 //    for(int i=0;i<arr.size();i++){
@@ -272,6 +272,7 @@ void MainWindow::on_pushButton_clicked()
     ui->frame->setPixmap(QPixmap::fromImage(img));
 }
 
+//to create the grid
 void MainWindow::on_pushButton_2_clicked()
 {
 //    string s=arg1;
@@ -297,7 +298,7 @@ void MainWindow::on_pushButton_2_clicked()
 }
 
 
-void MainWindow::on_spinBox_textChanged(const QString &arg1)
+void MainWindow::on_spinBox_textChanged()
 {
 //    on_pushButton_clicked();
 
@@ -587,6 +588,7 @@ void MainWindow::on_pushButton_7_clicked()
 
 //    setPoints(points,2);
     for(auto it:points){
+//        myDelay();
         setColor(it.first,it.second,2);
 //        s.insert({{it.first,it.second},2});
     }
@@ -601,18 +603,18 @@ void MainWindow::on_pushButton_7_clicked()
     int originY=350/val;
 
     //for transformation operation
-    if(ui->transformation->isChecked()){
-        for(auto it:points){
-            //        setColor(it.first,it.second,1);
-            trans.push_back({it.first-originX,it.second-originY,2});
-        }
-    }
+//    if(ui->transformation->isChecked()){
+//        for(auto it:points){
+//            //        setColor(it.first,it.second,1);
+//            trans.push_back({it.first-originX,it.second-originY,2});
+//        }
+//    }
 
 
-    for(auto it:points){
-        //        setColor(it.first,it.second,1);
-        s.insert({{it.first-originX,it.second-originY},2});
-    }
+//    for(auto it:points){
+//        //        setColor(it.first,it.second,1);
+//        s.insert({{it.first-originX,it.second-originY},2});
+//    }
 
 }
 
@@ -1102,7 +1104,7 @@ void MainWindow::on_draw_poly_clicked()
     }
     point1=poly_points[n-2];
     point2=poly_points[n-1];
-    poly_points.clear();
+//    poly_points.clear();
 }
 
 
@@ -1133,15 +1135,16 @@ void MainWindow::boundary_fill(int x,int y,QRgb fill_color,QRgb boundary_color){
         int y_low=y*val;
         int x_high=x_low+val;
         int y_high=y_low+val;
+//        myDelay();
         for(int i=x_low;i<x_high;i++){
             for(int j=y_low;j<y_high;j++){
                 img.setPixel(j,i,fill_color);
             }
         }
         //for translation operation
-        if(ui->transformation->isChecked()){
-            trans.push_back({x-originX,y-originY,9});//9 for boundary fill
-        }
+//        if(ui->transformation->isChecked()){
+//            trans.push_back({x-originX,y-originY,9});//9 for boundary fill
+//        }
         ui->frame->setPixmap(QPixmap::fromImage(img));
         boundary_fill(x,y+1,fill_color,boundary_color);
         boundary_fill(x,y-1,fill_color,boundary_color);
@@ -1332,19 +1335,43 @@ void MainWindow::on_translation_clicked()
     int val=ui->spinBox->value();
     int X=-ui->transY->value();
     int Y=ui->transX->value();
-    vector<vector<int>> arr;
-    //translation operation
-    for(auto it:trans){
-        int translatedX=it[0]+X;
-        int translatedY=it[1]+Y;
-        arr.push_back({translatedX,translatedY,it[2]});
-    }
+    pair<int,int> boundary_fill_origin=point2;
+
+    //to clear the screen
+    on_spinBox_textChanged();
+    //new implementation
+
+    vector<pair<int,int>> arr;
     int originX=350/val;
     int originY=350/val;
-    for(auto it:arr){
-        myDelay();
-        setColor(it[0]+originX,it[1]+originY,it[2]);
+    //to get the points in cartesian coordinate system
+    for(auto it:poly_points){
+        arr.push_back({it.first-originX,it.second-originY});
     }
+    //to get the translated value
+    for(int i=0;i<arr.size();i++){
+        int x=arr[i].first;
+        int y=arr[i].second;
+        int translatedX=x+X;
+        int translatedY=y+Y;
+        arr[i]={translatedX,translatedY};
+    }
+    //to get the actual pixel position
+    for(int i=0;i<arr.size();i++){
+        poly_points[i]={arr[i].first+originX,arr[i].second+originY};
+    }
+    //to draw the transformed polygon
+    on_draw_poly_clicked();
+    //to transformed the boundary fill origin
+    int x=boundary_fill_origin.first-originX;
+    int y=boundary_fill_origin.second-originY;
+    int translatedX=x+X;
+    int translatedY=y+Y;
+    pair<int,int> translated_boundary_fill_origin={translatedX+originX,translatedY+originY};
+
+    point1=point2;
+    point2=translated_boundary_fill_origin;
+    on_boundary_fill_clicked();
 }
 
 
@@ -1353,18 +1380,199 @@ void MainWindow::on_scaling_clicked()
     int val=ui->spinBox->value();
     int X=ui->transY->value();
     int Y=ui->transX->value();
-    vector<vector<int>> arr;
-    //translation operation
-    for(auto it:trans){
-        int scaledX=it[0]*X;
-        int scaledY=it[1]*Y;
-        arr.push_back({scaledX,scaledY,it[2]});
-    }
+    pair<int,int> boundary_fill_origin=point2;
+
+    //to clear the screen
+    on_spinBox_textChanged();
+    //new implementation
+
+    vector<pair<int,int>> arr;
     int originX=350/val;
     int originY=350/val;
-    for(auto it:arr){
-        myDelay();
-        setColor(it[0]+originX,it[1]+originY,it[2]);
+    //to get the points in cartesian coordinate system
+    for(auto it:poly_points){
+        arr.push_back({it.first-originX,it.second-originY});
     }
+    //to get the translated value
+    for(int i=0;i<arr.size();i++){
+        int x=arr[i].first;
+        int y=arr[i].second;
+        int translatedX=x*X;
+        int translatedY=y*Y;
+        arr[i]={translatedX,translatedY};
+    }
+    //to get the actual pixel position
+    for(int i=0;i<arr.size();i++){
+        poly_points[i]={arr[i].first+originX,arr[i].second+originY};
+    }
+    //to draw the transformed polygon
+    on_draw_poly_clicked();
+    //to transformed the boundary fill origin
+    int x=boundary_fill_origin.first-originX;
+    int y=boundary_fill_origin.second-originY;
+    int translatedX=x*X;
+    int translatedY=y*Y;
+    pair<int,int> translated_boundary_fill_origin={translatedX+originX,translatedY+originY};
+
+    point1=point2;
+    point2=translated_boundary_fill_origin;
+    on_boundary_fill_clicked();
+}
+
+
+void MainWindow::on_shear_clicked()
+{
+    int val=ui->spinBox->value();
+    int X=-ui->transY->value();
+    int Y=-ui->transX->value();
+    pair<int,int> boundary_fill_origin=point2;
+
+    //to clear the screen
+    on_spinBox_textChanged();
+    //new implementation
+
+    vector<pair<int,int>> arr;
+    int originX=350/val;
+    int originY=350/val;
+    //to get the points in cartesian coordinate system
+    for(auto it:poly_points){
+        arr.push_back({it.first-originX,it.second-originY});
+    }
+    //to get the translated value
+    for(int i=0;i<arr.size();i++){
+        int x=arr[i].first;
+        int y=arr[i].second;
+        int translatedX=x+X*y;
+        int translatedY=y+Y*x;
+        arr[i]={translatedX,translatedY};
+    }
+    //to get the actual pixel position
+    for(int i=0;i<arr.size();i++){
+        poly_points[i]={arr[i].first+originX,arr[i].second+originY};
+    }
+    //to draw the transformed polygon
+    on_draw_poly_clicked();
+    //to transformed the boundary fill origin
+    int x=boundary_fill_origin.first-originX;
+    int y=boundary_fill_origin.second-originY;
+    int translatedX=x+X*y;
+    int translatedY=y+Y*x;
+    pair<int,int> translated_boundary_fill_origin={translatedX+originX,translatedY+originY};
+
+    point1=point2;
+    point2=translated_boundary_fill_origin;
+    on_boundary_fill_clicked();
+}
+
+
+void MainWindow::on_rotation_clicked()
+{
+    int val=ui->spinBox->value();
+//    int X=-ui->transY->value();
+//    int Y=-ui->transX->value();
+    pair<int,int> boundary_fill_origin=point1;
+    double angle=ui->angle->value();
+    //converting into radian
+    angle=(22*angle)/(7*180);
+    //to clear the screen
+    on_spinBox_textChanged();
+    //new implementation
+
+    vector<pair<int,int>> arr;
+//    int originX=350/val;
+//    int originY=350/val;
+    int originX=point2.first;
+    int originY=point2.second;
+    //to get the points in cartesian coordinate system
+    for(auto it:poly_points){
+        arr.push_back({it.first-originX,it.second-originY});
+    }
+    //to get the translated value
+    for(int i=0;i<arr.size();i++){
+        int x=arr[i].first;
+        int y=arr[i].second;
+        int translatedX=x*cos(angle)-y*sin(angle);
+        int translatedY=y*cos(angle)+x*sin(angle);
+        arr[i]={translatedX,translatedY};
+    }
+    //to get the actual pixel position
+    for(int i=0;i<arr.size();i++){
+        poly_points[i]={arr[i].first+originX,arr[i].second+originY};
+    }
+    //to draw the transformed polygon
+    on_draw_poly_clicked();
+    //to transformed the boundary fill origin
+    int x=boundary_fill_origin.first-originX;
+    int y=boundary_fill_origin.second-originY;
+    int translatedX=x*cos(angle)-y*sin(angle);
+    int translatedY=y*cos(angle)+x*sin(angle);
+    pair<int,int> translated_boundary_fill_origin={translatedX+originX,translatedY+originY};
+
+    point1=point2;
+    point2=translated_boundary_fill_origin;
+    on_boundary_fill_clicked();
+    point1=translated_boundary_fill_origin;
+    point2={originX,originY};
+}
+
+
+void MainWindow::on_reflect_clicked()
+{
+    int val=ui->spinBox->value();
+//    int X=-ui->transY->value();
+//    int Y=-ui->transX->value();
+    pair<int,int> boundary_fill_origin=point2;
+
+    //to clear the screen
+    on_spinBox_textChanged();
+    //new implementation
+
+    vector<pair<int,int>> arr;
+    int originX=350/val;
+    int originY=350/val;
+    //to get the points in cartesian coordinate system
+    for(auto it:poly_points){
+        arr.push_back({it.first-originX,it.second-originY});
+    }
+    //to get the translated value
+    for(int i=0;i<arr.size();i++){
+        int x=arr[i].first;
+        int y=arr[i].second;
+        int translatedX;
+        int translatedY;
+        if(ui->radioX->isChecked()){
+            translatedX=-x;
+            translatedY=y;
+        }
+        else{
+            translatedX=x;
+            translatedY=-y;
+        }
+        arr[i]={translatedX,translatedY};
+    }
+    //to get the actual pixel position
+    for(int i=0;i<arr.size();i++){
+        poly_points[i]={arr[i].first+originX,arr[i].second+originY};
+    }
+    //to draw the transformed polygon
+    on_draw_poly_clicked();
+    //to transformed the boundary fill origin
+    int x=boundary_fill_origin.first-originX;
+    int y=boundary_fill_origin.second-originY;
+    int translatedX;
+    int translatedY;
+    if(ui->radioX->isChecked()){
+        translatedX=-x;
+        translatedY=y;
+    }
+    else{
+        translatedX=x;
+        translatedY=-y;
+    }
+    pair<int,int> translated_boundary_fill_origin={translatedX+originX,translatedY+originY};
+
+    point1=point2;
+    point2=translated_boundary_fill_origin;
+    on_boundary_fill_clicked();
 }
 
