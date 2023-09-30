@@ -748,6 +748,32 @@ background-color: rgb(85, 255, 255);</string>
      <string>Y</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="composite_a">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>590</y>
+      <width>80</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Composite A</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="composite_b">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>590</y>
+      <width>80</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Composite B</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

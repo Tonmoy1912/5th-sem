@@ -82,6 +82,8 @@ public:
     QPushButton *reflect;
     QRadioButton *radioX;
     QRadioButton *radioY;
+    QPushButton *composite_a;
+    QPushButton *composite_b;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -280,6 +282,12 @@ public:
         radioY = new QRadioButton(centralWidget);
         radioY->setObjectName("radioY");
         radioY->setGeometry(QRect(860, 560, 69, 18));
+        composite_a = new QPushButton(centralWidget);
+        composite_a->setObjectName("composite_a");
+        composite_a->setGeometry(QRect(710, 590, 80, 18));
+        composite_b = new QPushButton(centralWidget);
+        composite_b->setObjectName("composite_b");
+        composite_b->setGeometry(QRect(810, 590, 80, 18));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
@@ -343,6 +351,8 @@ public:
         reflect->setText(QCoreApplication::translate("MainWindow", "Reflect", nullptr));
         radioX->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
         radioY->setText(QCoreApplication::translate("MainWindow", "Y", nullptr));
+        composite_a->setText(QCoreApplication::translate("MainWindow", "Composite A", nullptr));
+        composite_b->setText(QCoreApplication::translate("MainWindow", "Composite B", nullptr));
     } // retranslateUi
 
 };

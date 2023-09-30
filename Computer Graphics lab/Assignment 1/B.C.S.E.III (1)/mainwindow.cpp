@@ -12,7 +12,7 @@
 
 using namespace std;
 
-pair<int,int> point1={0,0},point2={0,0};
+pair<int,int> point1={0,0},point2={0,0},fill_point={0,0};
 vector<pair<int,int>> poly_points;
 int s_time=0.5;
 //vector<vector<int>> arr(800,vector<int>(800,0));
@@ -1117,6 +1117,7 @@ void MainWindow::on_boundary_fill_clicked()
 
 //    }
 
+    fill_point=point2;
     boundary_fill(point2.first,point2.second,qRgb(205,220,57),qRgb(120,255,50));
 }
 
@@ -1491,8 +1492,8 @@ void MainWindow::on_rotation_clicked()
     for(int i=0;i<arr.size();i++){
         int x=arr[i].first;
         int y=arr[i].second;
-        int translatedX=x*cos(angle)-y*sin(angle);
-        int translatedY=y*cos(angle)+x*sin(angle);
+        int translatedX=x*cos(angle)-y*sin(angle)+0.5;
+        int translatedY=y*cos(angle)+x*sin(angle)+0.5;
         arr[i]={translatedX,translatedY};
     }
     //to get the actual pixel position
@@ -1504,8 +1505,8 @@ void MainWindow::on_rotation_clicked()
     //to transformed the boundary fill origin
     int x=boundary_fill_origin.first-originX;
     int y=boundary_fill_origin.second-originY;
-    int translatedX=x*cos(angle)-y*sin(angle);
-    int translatedY=y*cos(angle)+x*sin(angle);
+    int translatedX=x*cos(angle)-y*sin(angle)+0.5;
+    int translatedY=y*cos(angle)+x*sin(angle+0.5);
     pair<int,int> translated_boundary_fill_origin={translatedX+originX,translatedY+originY};
 
     point1=point2;
@@ -1574,5 +1575,176 @@ void MainWindow::on_reflect_clicked()
     point1=point2;
     point2=translated_boundary_fill_origin;
     on_boundary_fill_clicked();
+}
+
+
+
+
+void MainWindow::on_composite_a_clicked()
+{
+    pair<int,int> boundary_fill_origin=point1;
+    int originX=point2.first;
+    int originY=point2.second;
+    int X=ui->transY->value();
+    int Y=ui->transX->value();
+    double angle=ui->angle->value();
+    //converting into radian
+    angle=(22*angle)/(7*180);
+    //to clear the screen
+    on_spinBox_textChanged();
+    //new implementation
+    vector<pair<int,int>> arr;
+    vector<vector<double>> rot={{cos(angle),-sin(angle),0},{sin(angle),cos(angle),0},{0,0,1}};
+    vector<vector<int>> trans={{X,0,0},{0,Y,0},{0,0,1}};
+    //to get the points in cartesian coordinate system
+    for(auto it:poly_points){
+        arr.push_back({it.first-originX,it.second-originY});
+    }
+    int n=arr.size();
+    for(int t=0;t<n;t++){
+        vector<int> point={arr[t].first,arr[t].second,1};
+        vector<int> transformedPoint(3);
+        //for rotation
+        for(int i=0;i<3;i++){
+            double ans=0;
+            for(int j=0;j<3;j++){
+                ans+=rot[i][j]*point[j];
+            }
+            transformedPoint[i]=ans+0.5;
+        }
+        point=transformedPoint;
+        for(int i=0;i<3;i++){
+            int ans=0;
+            for(int j=0;j<3;j++){
+                ans+=trans[i][j]*point[j];
+            }
+            transformedPoint[i]=ans;
+        }
+        point=transformedPoint;
+        arr[t].first=point[0];
+        arr[t].second=point[1];
+    }
+    //to get the actual pixel position
+    for(int i=0;i<n;i++){
+        poly_points[i].first=arr[i].first+originX;
+        poly_points[i].second=arr[i].second+originY;
+    }
+    //to draw the transformed polygon
+    on_draw_poly_clicked();
+    vector<int> point={boundary_fill_origin.first-originX,boundary_fill_origin.second-originY,1};
+    vector<int> transformedPoint(3);
+    //for rotation
+    for(int i=0;i<3;i++){
+        double ans=0;
+        for(int j=0;j<3;j++){
+            ans+=rot[i][j]*point[j];
+        }
+        transformedPoint[i]=ans;
+    }
+    point=transformedPoint;
+    for(int i=0;i<3;i++){
+        int ans=0;
+        for(int j=0;j<3;j++){
+            ans+=trans[i][j]*point[j];
+        }
+        transformedPoint[i]=ans;
+    }
+    point=transformedPoint;
+    point2.first=point[0]+originX;
+    point2.second=point[1]+originY;
+    on_boundary_fill_clicked();
+    point1=point2;//set the boundary fill origin
+    point2={originX,originY};
+}
+
+
+void MainWindow::on_composite_b_clicked()
+{
+    int val=ui->spinBox->value();
+    int originX=350/val;
+    int originY=350/val;
+    pair<int,int> pointA={point1.first-originX,point1.second-originY},pointB={point2.first-originX,point2.second-originY};
+    pair<int,int> boundary_fill_origin=fill_point;
+    int dx=(pointA.first-pointB.first);
+    int dy=(pointA.second-pointB.second);
+    vector<vector<int>> trans_back={{1,0,pointA.first},{0,1,pointA.second},{0,0,1}};
+    vector<vector<int>> trans={{1,0,-pointA.first},{0,1,-pointA.second},{0,0,1}};
+    vector<vector<int>> reflect={{1,0,0},{0,-1,0},{0,0,1}};
+    double angle;
+    if(dx==0){
+        angle=11/((double)7);
+    }
+    else{
+        angle=atan(((double)dy)/dx);
+    }
+    vector<vector<double>> rot_back={{cos(angle),-sin(angle),0},{sin(angle),cos(angle),0},{0,0,1}};
+    angle=-angle;
+    vector<vector<double>> rot={{cos(angle),-sin(angle),0},{sin(angle),cos(angle),0},{0,0,1}};
+    vector<pair<int,int>> arr;
+    //to clear the screen
+//    on_spinBox_textChanged();
+    //to get the points in cartesian coordinate system
+    for(auto it:poly_points){
+        arr.push_back({it.first-originX,it.second-originY});
+    }
+    int n=arr.size();
+    for(int t=0;t<n;t++){
+        vector<int> point={arr[t].first,arr[t].second,1};
+        vector<int> transformedPoint(3);
+        //translation
+        for(int i=0;i<3;i++){
+            int ans=0;
+            for(int j=0;j<3;j++){
+                ans+=trans[i][j]*point[j];
+            }
+            transformedPoint[i]=ans;
+        }
+        point=transformedPoint;
+        //rotation
+        for(int i=0;i<3;i++){
+            double ans=0;
+            for(int j=0;j<3;j++){
+                ans+=rot[i][j]*point[j];
+            }
+            transformedPoint[i]=ans+0.5;
+        }
+        point=transformedPoint;
+        //reflection
+        for(int i=0;i<3;i++){
+            int ans=0;
+            for(int j=0;j<3;j++){
+                ans+=reflect[i][j]*point[j];
+            }
+            transformedPoint[i]=ans;
+        }
+        point=transformedPoint;
+        //rotate_back
+        for(int i=0;i<3;i++){
+            double ans=0;
+            for(int j=0;j<3;j++){
+                ans+=rot_back[i][j]*point[j];
+            }
+            transformedPoint[i]=ans+0.5;
+        }
+        point=transformedPoint;
+        //translate back
+        for(int i=0;i<3;i++){
+            int ans=0;
+            for(int j=0;j<3;j++){
+                ans+=trans_back[i][j]*point[j];
+            }
+            transformedPoint[i]=ans;
+        }
+        point=transformedPoint;
+        arr[t].first=point[0];
+        arr[t].second=point[1];
+    }
+    //to get the actual pixel position
+    for(int i=0;i<n;i++){
+        poly_points[i].first=arr[i].first+originX;
+        poly_points[i].second=arr[i].second+originY;
+    }
+    //to draw the transformed polygon
+    on_draw_poly_clicked();
 }
 

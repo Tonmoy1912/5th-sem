@@ -85,6 +85,10 @@ private slots:
 
     void on_reflect_clicked();
 
+    void on_composite_a_clicked();
+
+    void on_composite_b_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPoint p1,p2;
