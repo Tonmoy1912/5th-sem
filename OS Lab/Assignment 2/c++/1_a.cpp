@@ -14,7 +14,7 @@ void process(string name,int n,int seed,int &count){
         int t=rand()%1000000+(i%3)*10000;
         usleep(t);
         
-        cout<<name<<" "<<getpid()<<" "<<"iteration no: "<<i+1<<"count "<<count++<<endl;
+        cout<<name<<" "<<getpid()<<" "<<"iteration no: "<<i+1<<endl;
     }
 }
 
