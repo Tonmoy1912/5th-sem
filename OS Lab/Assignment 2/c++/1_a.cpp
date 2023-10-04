@@ -1,62 +1,48 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <sys/types.h>
 #include <unistd.h>
-
+#include<sys/wait.h>
+#include <cstdlib>
+#include<time.h>
+#include<mutex>
 using namespace std;
 
-// Function for child process X
-void process_X(int iterations) {
-    srand(time(nullptr)); // Seed the random number generator
-    for (int i = 0; i < iterations; ++i) {
-        double sleep_duration = (rand() % 5 + 1) / 10.0; // Random sleep between 0.1 and 0.5 seconds
-        cout << "Process X - Iteration " << i + 1 << ", Sleeping for " << sleep_duration << " seconds" << endl;
-        sleep(sleep_duration); // Sleep in second
+int count=0;
+
+void process(string name,int n,int seed,int &count){
+    srand(seed);
+    for(int i=0;i<n;i++){
+        int t=rand()%1000000+(i%3)*10000;
+        usleep(t);
+        
+        cout<<name<<" "<<getpid()<<" "<<"iteration no: "<<i+1<<"count "<<count++<<endl;
     }
 }
 
-// Function for child process Y
-void process_Y(int iterations) {
-    srand(time(nullptr)); // Seed the random number generator
-    for (int i = 0; i < iterations; ++i) {
-        double sleep_duration = (rand() % 5 + 5) / 10.0; // Random sleep between 0.5 and 1.0 seconds
-        cout << "Process Y - Iteration " << i + 1 << ", Sleeping for " << sleep_duration << " seconds" << endl;
-        sleep(sleep_duration); // Sleep in second
+
+  
+int main()
+{
+    // srand(time(0));
+    pid_t X = fork();
+    int count=0;
+  
+    if(X==0){
+        //inside first(X) process
+        process("PROCESS X",10,123,count);
     }
-}
-
-int main() {
-    int iterations = 10;
-
-    // Create child processes X and Y
-    pid_t child_x, child_y;
-
-    child_x = fork(); // Create child process X
-
-    if (child_x == 0) { // In the child process X
-        process_X(iterations);
-        exit(0);
-    } else if (child_x > 0) { // In the parent process
-        child_y = fork(); // Create child process Y
-
-        if (child_y == 0) { // In the child process Y
-            process_Y(iterations);
-            exit(0);
-        } else if (child_y > 0) { // In the parent process
-            // Wait for both child processes to finish
-            int status;
-            waitpid(child_x, &status, 0);
-            waitpid(child_y, &status, 0);
-            cout << "Both processes have finished." << endl;
-        } else {
-            cerr << "Error creating child process Y." << endl;
-            exit(1);
+    else{
+        // sleep(2);
+        pid_t Y=fork();
+        if(Y==0){
+            //inside second process(Y)
+            process("PROCESS Y",10,456,count);
         }
-    } else {
-        cerr << "Error creating child process X." << endl;
-        exit(1);
+        else{
+            wait(nullptr);
+            wait(nullptr);
+            cout<<"End of main parent program"<<endl;
+        }
     }
-
+  
     return 0;
 }
