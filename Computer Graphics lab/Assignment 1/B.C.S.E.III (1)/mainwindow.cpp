@@ -1687,6 +1687,27 @@ void MainWindow::on_composite_b_clicked()
     for(auto it:poly_points){
         arr.push_back({it.first-originX,it.second-originY});
     }
+    if(abs(dx)==abs(dy)){
+        int n=arr.size();
+        int X=pointA.first;
+        int Y=pointA.second;
+        for(int i=0;i<n;i++){
+            arr[i].first=arr[i].first-X;
+            arr[i].second=arr[i].second-Y;
+            swap(arr[i].first,arr[i].second);
+            arr[i].first=-arr[i].first;
+            arr[i].second=-arr[i].second;
+            arr[i].first=arr[i].first+X;
+            arr[i].second=arr[i].second+Y;
+        }
+        for(int i=0;i<n;i++){
+            poly_points[i].first=arr[i].first+originX;
+            poly_points[i].second=arr[i].second+originY;
+        }
+        //to draw the transformed polygon
+        on_draw_poly_clicked();
+        return ;
+    }
     int n=arr.size();
     for(int t=0;t<n;t++){
         vector<int> point={arr[t].first,arr[t].second,1};
