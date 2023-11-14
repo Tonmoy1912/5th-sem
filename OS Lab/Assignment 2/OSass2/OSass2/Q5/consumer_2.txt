@@ -1,0 +1,4 @@
+Consumer 2 consumed: 35
+Consumer 2 consumed: 32
+Consumer 2 consumed: 17
+Consumer 2 consumed: 24

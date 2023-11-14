@@ -1,0 +1,4 @@
+Consumer 8 consumed: 9
+Consumer 8 consumed: 5
+Consumer 8 consumed: 50
+Consumer 8 consumed: 41

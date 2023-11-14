@@ -1,0 +1,4 @@
+Consumer 9 consumed: 29
+Consumer 9 consumed: 37
+Consumer 9 consumed: 39
+Consumer 9 consumed: 30

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file>Infinite.wav</file>
+        <file>bg3.mp3</file>
+    </qresource>
+</RCC>

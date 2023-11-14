@@ -1,0 +1,3 @@
+sort_list([],X):-X=[].
+sort_list([H|T],X):-sort_list(T,NL),insert(H,NL,FL),X=FL.
+insert(E,L,X):-L==[]->X=[E];([H|T]=L,(E=<H->X=[E|L];(insert(E,T,NL),X=[H|NL]))).

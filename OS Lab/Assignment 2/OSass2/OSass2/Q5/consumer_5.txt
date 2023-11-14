@@ -1,0 +1,4 @@
+Consumer 5 consumed: 20
+Consumer 5 consumed: 12
+Consumer 5 consumed: 48
+Consumer 5 consumed: 38

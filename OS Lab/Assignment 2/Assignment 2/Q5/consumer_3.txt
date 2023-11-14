@@ -1,0 +1,4 @@
+Consumer 3 consumed: 25
+Consumer 3 consumed: 43
+Consumer 3 consumed: 27
+Consumer 3 consumed: 10

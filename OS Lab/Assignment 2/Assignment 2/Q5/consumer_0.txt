@@ -1,0 +1,4 @@
+Consumer 0 consumed: 42
+Consumer 0 consumed: 6
+Consumer 0 consumed: 33
+Consumer 0 consumed: 23

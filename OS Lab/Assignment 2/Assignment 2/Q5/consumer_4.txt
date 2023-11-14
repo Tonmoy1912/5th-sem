@@ -1,0 +1,4 @@
+Consumer 4 consumed: 1
+Consumer 4 consumed: 28
+Consumer 4 consumed: 19
+Consumer 4 consumed: 8

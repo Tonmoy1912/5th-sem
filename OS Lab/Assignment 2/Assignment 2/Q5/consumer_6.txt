@@ -1,0 +1,4 @@
+Consumer 6 consumed: 15
+Consumer 6 consumed: 4
+Consumer 6 consumed: 45
+Consumer 6 consumed: 49

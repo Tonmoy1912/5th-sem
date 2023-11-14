@@ -1,0 +1,4 @@
+Consumer 7 consumed: 13
+Consumer 7 consumed: 3
+Consumer 7 consumed: 36
+Consumer 7 consumed: 7
